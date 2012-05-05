@@ -1,0 +1,233 @@
+\newcommand{\institut}{}
+\newcommand{\fachgebiet}{Regelungstechnik}
+\newcommand{\veranstaltung}{Praktikum Grundlagen der Regelungstechnik}
+\newcommand{\pdfautor}{Dirk Barbendererde (321 836), Boris Henckell (325 779)}
+\newcommand{\autor}{Dirk Barbendererde (321 836)\\ Boris Henckell (325 779)}
+\newcommand{\pdftitle}{Praktikum Regelungstechnik  Versuch 1a}
+\newcommand{\prototitle}{Praktikum Regelungstechnik \\ Versuch 1a}
+\newcommand{\aufgabe}{}
+
+\newcommand{\gruppe}{Gruppe: G1 Di 12-14}
+\newcommand{\betreuer}{Betreuer: Christian Schmuck}
+
+
+
+\input{../../packages/tu_header_8}
+
+
+% \lstlistoflistings
+\definecolor{darkgray}{rgb}{0.95,0.95,0.95}
+\lstset{language=Scilab}
+\lstset{inputencoding=utf8}
+%\lstset{extendedchars=true} % Umlaute an der richtigen stelle und nicht am Anfang ausgeben
+\lstset{backgroundcolor=\color{darkgray}}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=7pt, breaklines=true}
+\lstset{keywordstyle=\color{red}\bfseries\emph}
+\lstset{
+breaklines,
+numbers=left,
+frame=single,
+xleftmargin=-2cm,
+xrightmargin=-1.5cm
+}
+% enables UTF-8 in source code: (dirty, dirty hack)
+\lstset{literate=
+    %Deutsch
+    {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}
+    {{\"O}}1 {Ü}{{\"U}}1 {ß}{\ss}1
+    %Türkisch
+    {â}{{\^{a}}}1 {Â}{{\^{A}}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ğ}{{\u{g}}}1 {Ğ}{{\u{G}}}1 {ı}{{\i}}1 {İ}{{\.{I}}}1 {ö}{{\"o}}1 {Ö}{{\"O}}1 {ş}{{\c{s}}}1
+    {Ş}{{\c{S}}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1
+    %Polish
+    {ą}{{\k{a}}}1 {ć}{{\'c}}1 {ę}{{\k{e}}}1 {ł}{{\l{}}}1 {ń}{{\'n}}1 {ó}{{\'o}}1 {ś}{{\'s}}1 {ż}{{\.z}}1 {ź}{{\'z}}1 {Ą}{{\k{A}}}1 {Ć}{{\'C}}1
+    {Ę}{{\k{E}}}1 {Ł}{{\L{}}}1 {Ń}{{\'N}}1 {Ó}{{\'O}}1 {Ś}{{\'S}}1 {Ż}{{\.Z}}1 {Ź}{{\'Z}}1
+    %Spanish
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+}
+
+%     \lstinputlisting{./praktikum6.sce}
+
+
+
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------
+
+\section{Vorbereitungsaufgaben}
+\begin{quote}
+	\subsection{lineare Zustandsmodell}
+	\begin{quote}
+		Aufgabe:\\
+		Leiten Sie das vollständige lineare Zustandsmodell für die Regelstrecke her. Stellen Sie hierfür zunächst
+		die Differentialgleichung für den Ankerstrom und die Bilanzgleichung der Drehmomente an der Massenscheibe auf. Welche
+		Komponenten hat der Zustandsvektor?\\
+		
+		
+        
+	\end{quote}
+	
+	\subsection{Blockschaltbild}
+	\begin{quote}
+		Aufgabe:\\
+		Zeichnen Sie das Blockschaltbild der aus Leistungsverstärker und Gleichstrommaschine mit Schwungscheibe
+		bestehenden Regelstrecke und beschriften Sie die Signalpfeile mit den zugehörigen Größen. Es sollen ausschließlich Summations-,
+		Verstärkungs- und Integratorblöcke verwendet werden.\\
+		
+		
+		
+	\end{quote}
+	
+	\subsection{Zustandsraummodell}
+	\begin{quote}
+		Aufgabe:\\
+		Der Leistungsverstärker soll nun durch die statische Verstärkung $V$ approximiert werden, da er eine
+		schnelle Dynamik besitzt, die vernachlässigt werden kann. Wie lautet das resultierende Zustandsraummodell? Verwenden
+		Sie dieses Modell für alle weiteren Betrachtungen.\\
+		
+		
+		
+	\end{quote}
+	
+	\subsection{Übertragungsfunktion}
+	\begin{quote}
+		Aufgabe:\\
+		Bestimmen Sie die Übertragungsfunktion $\overline{G}_{ui}(s) = \frac{I_A(s)}{U(s)}$ zwischen der
+		Eingangsspannung $u$ des Leistungsverstärkers und dem Ankerstrom $i_A$. Vereinfachen Sie die 
+		Übertragungsfunktion $\overline{G}_{ui}$ durch Vernachlässigung sehr schneller Dynamikanteile der Strecke, d.h.
+		Vernachlässigung von Polen mit betragsmäßig sehr hohem negativen Realteil. Wie lautet die resultierende
+		vereinfachte Übertragungsfunktion $G_{ui}$? Warum ist diese Vereinfachung zulässig? Verwenden Sie im Folgenden
+		die vereinfachte Übertragungsfunktion $G_{ui}$.\\
+				
+        
+	\end{quote}
+	
+	\subsection{Wurzelortskurve}
+	\begin{quote}
+		Aufgabe:\\
+		Wiederholen Sie das Thema "`Wurzelortskurve"'!\\
+		
+
+    \end{quote}
+    
+    \subsection{Reglerentwurf}
+    Entwerfen Sie einen mit einem PT1-Glied verketteten PI-Regler $K_i(s) = k_i \frac{s-s_{0,i}}{s} \frac{-s_1}{s-s_1}$
+    \begin{quote}
+        \subsubsection{Vorteil dieses Reglers}
+            
+        \begin{quote}
+            Aufgabe:\\
+            Welchen Vorteil besitzt die gewählte Reglerstruktur gegenüber einem reinen PI-
+            Regler? Welche Effekte erwarten Sie für einen reinen PI-Regler im geschlossenen
+            Regelkreis?\\
+            
+        \end{quote}
+
+
+        \subsubsection{Polstelle $s_1$}
+        \begin{quote}
+            Aufgabe:\\
+            Platzieren Sie die Polstelle $s_1$ des Tiefpasses anhand von Überlegungen mit der
+            Wurzelortskurve. Ihr Ziel sollte eine möglichst schnelle Reaktion des Regelkreises
+            sein.\\
+            
+        \end{quote}
+        
+        
+        \subsubsection{Wurzelortskurve}
+
+        \begin{quote}
+            Aufgabe:\\
+            Legen Sie nun weiterhin anhand der Wurzelortskurve die Nullstelle $s_{0,i}$
+            fest, sodass bei einer geeigneten Wahl von $k_i$ des Reglers
+            das Potential besteht, einen schnellen Regler zu entwerfen.\\
+        
+        \end{quote}
+            
+        
+        \subsubsection{Strungantwort}
+
+        \begin{quote}
+            Aufgabe:\\
+            Die Sprungantwort des geschlossenen Kreises soll nach $0,02s$ nur noch eine Regelabweichung von $5\%$
+            aufweisen. Bestimmen Sie $k_i$ mit Hilfe von Simulationen der Führungssprungantwort.\\
+        
+	 	
+        \end{quote}
+
+    \end{quote}
+    
+    
+    \subsection{Störübertragungsfunktion}
+    \begin{quote}
+        Aufgabe:\\
+        Berechnen Sie die Störübertragungsfunktion $\frac{I_A(s)}{D_u(s)}$ des Regelkreises, die den Einfluss
+        einer Störspannung $d_u$ am Eingang des Leistungsverstärkers auf den Ankerstrom $i_A$ beschreibt.
+        Berechnen Sie die Störübertragungsfunktion. Simulieren Sie die Störsprungantwort.\\
+        
+	 	
+    \end{quote}    
+    
+    
+    
+    \subsection{Sensitivitäts- und komplimentäre Sensitivitätsfunktion}
+    \begin{quote}
+        Aufgabe:\\
+        Zeichnen Sie die Amplitudenfrequenzgänge der Sensitivitätsfunktion $S_i(s)$ und der komplementären
+        Sensitivitätsfunktion $T_i (s)$ des geschlossenen Regelkreises in dem Bereich $\omega = 10^{-3}\frac{rad}{s}
+        \ldots 10^{3}\frac{rad}{s}$ um das Verhalten der Stromregelung für den gesamten Frequenzbereich beurteilen zu
+        können.\\
+        Machen Sie Aussagen darüber, für welche Frequenzbereiche der Referenz- und Störgröße gutes Regelverhalten
+        erzielt wird und in welchen Frequenzbereichen auftretendes Messrauschen sich kaum auf die Regelgröße auswirkt.\\
+        
+                        
+	\end{quote}
+		
+	\subsection{Blockstaltbild des Reglers}
+    \begin{quote}
+        Aufgabe:\\
+        Erstellen Sie ein Blockschaltbild des Reglers auf Basis zweier Integratoren, in welchem der PI-Anteil und PT1-Anteil in Reihe geschaltet
+        sind. Die Parameter $k_i$, $s_{0,i}$, $s_1$ sollen direkt in die Verstärkungsblöcke eingehen. Implementieren Sie
+        den kompletten Regelkreis als Scicos-Diagramm und bringen Sie Ihre Simulationsdateien zum Durchführungtermin
+        mit!
+        
+	 	
+    \end{quote}
+    
+  
+\end{quote}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\section{Versuch}
+\begin{quote}
+    
+\end{quote}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\section{Ergebnisse}
+\begin{quote}
+    
+\end{quote}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+
+
+% \begin{quote}
+%     \lstinputlisting[
+%         caption={Scilab-script},
+%         label=lst:scilab]
+%         {./Scilab/Motor.sce}
+%         
+% \end{quote}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+
+
+\end{document}
