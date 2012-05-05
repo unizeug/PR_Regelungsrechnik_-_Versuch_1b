@@ -3,8 +3,8 @@
 \newcommand{\veranstaltung}{Praktikum Grundlagen der Regelungstechnik}
 \newcommand{\pdfautor}{Dirk Barbendererde (321 836), Boris Henckell (325 779)}
 \newcommand{\autor}{Dirk Barbendererde (321 836)\\ Boris Henckell (325 779)}
-\newcommand{\pdftitle}{Praktikum Regelungstechnik  Versuch 1a}
-\newcommand{\prototitle}{Praktikum Regelungstechnik \\ Versuch 1a}
+\newcommand{\pdftitle}{Praktikum Regelungstechnik  Versuch 1b}
+\newcommand{\prototitle}{Praktikum Regelungstechnik \\ Versuch 1b}
 \newcommand{\aufgabe}{}
 
 \newcommand{\gruppe}{Gruppe: G1 Di 12-14}
@@ -55,25 +55,54 @@ xrightmargin=-1.5cm
 
 \section{Vorbereitungsaufgaben}
 \begin{quote}
-	\subsection{lineare Zustandsmodell}
+	\subsection{Übertragungsfunktion}
+    Aufgabe:\\
+    Ermittlen Sie die Übertragungsfunktion $G_\omega^{'} (s) = \frac{\Omega(s)}{R_i (s)}$ der nun relevanten
+    Regelstrecke, die den unterlagerten Stromregelkreis aus Versuchsteil 1a enthält.\\
 	\begin{quote}
-		Aufgabe:\\
-		Leiten Sie das vollständige lineare Zustandsmodell für die Regelstrecke her. Stellen Sie hierfür zunächst
-		die Differentialgleichung für den Ankerstrom und die Bilanzgleichung der Drehmomente an der Massenscheibe auf. Welche
-		Komponenten hat der Zustandsvektor?\\
 		
 		
         
 	\end{quote}
 	
-	\subsection{Blockschaltbild}
+	\subsection{Regler}
+    Aufgabe:\\
+    Als Drehzahlregler soll ein PI-Glied\\
+    \begin{equation*}
+        \begin{split}
+            K_\omega (s) = k_\omega \frac{s-s_{0,\omega}}{s}, \hspace{2em} k_\omega, s_{0,\omega} \in \mathbb{R}
+        \end{split}
+    \end{equation*}
+    verwendet werden.
 	\begin{quote}
-		Aufgabe:\\
-		Zeichnen Sie das Blockschaltbild der aus Leistungsverstärker und Gleichstrommaschine mit Schwungscheibe
-		bestehenden Regelstrecke und beschriften Sie die Signalpfeile mit den zugehörigen Größen. Es sollen ausschließlich Summations-,
-		Verstärkungs- und Integratorblöcke verwendet werden.\\
 		
+		\subsubsection{Begründen}
+        Aufgabe:\\
+        Begründen Sie, warum diese Reglerstruktur sinnvoll ist.\\
+		\begin{quote}
+			
+		\end{quote}
 		
+		\subsubsection{Bode-Diagramm}
+        Aufgabe:\\
+        Der Reglerentwurf soll nach dem Frequenzkennlinienverfahren durchgeführt werden. Zeichnen Sie dafür zunächst
+        das Bode-Diagramm von $G_\omega^{'}$.\\   
+        \begin{quote}
+                        
+        \end{quote}
+
+        \subsubsection{subsubsectionname}
+        Aufgabe:\\        
+        Wählen Sie zunächst das aus der Vorlesung bekannte Entwurfsvorgehen, indem Sie mit der Nullstelle $s_{0,\omega}$
+        des Reglers die langsamste Polstelle der Strecke kürzen. Bestimmen Sie dann mit Hilfe von Simulationen die
+        Verstärkung $k_\omega$ so, dass der geschlossene Regelkreis eine Ausregelzeit von etwa $0.6$ Sekunden aufweist
+        und das Ü̈berschwingen einen Wert von $20\%$ nicht übersteigt. Rufen Sie sich in Erinnerung, wie die
+        ``Kenngrößen'', ``Überschwingweite'' , ``Ausregelzeit'' , ``Phasenreserve'' und ``Durchtrittsfrequenz''
+        miteinander in Beziehung stehen!
+		\begin{quote}
+	
+		\end{quote}
+        
 		
 	\end{quote}
 	
