@@ -91,7 +91,7 @@ xrightmargin=-1.5cm
                         
         \end{quote}
 
-        \subsubsection{subsubsectionname}
+        \subsubsection{Reglerentwurf}
         Aufgabe:\\        
         Wählen Sie zunächst das aus der Vorlesung bekannte Entwurfsvorgehen, indem Sie mit der Nullstelle $s_{0,\omega}$
         des Reglers die langsamste Polstelle der Strecke kürzen. Bestimmen Sie dann mit Hilfe von Simulationen die
@@ -103,126 +103,7 @@ xrightmargin=-1.5cm
 	
 		\end{quote}
         
-		
-	\end{quote}
-	
-	\subsection{Zustandsraummodell}
-	\begin{quote}
-		Aufgabe:\\
-		Der Leistungsverstärker soll nun durch die statische Verstärkung $V$ approximiert werden, da er eine
-		schnelle Dynamik besitzt, die vernachlässigt werden kann. Wie lautet das resultierende Zustandsraummodell? Verwenden
-		Sie dieses Modell für alle weiteren Betrachtungen.\\
-		
-		
-		
-	\end{quote}
-	
-	\subsection{Übertragungsfunktion}
-	\begin{quote}
-		Aufgabe:\\
-		Bestimmen Sie die Übertragungsfunktion $\overline{G}_{ui}(s) = \frac{I_A(s)}{U(s)}$ zwischen der
-		Eingangsspannung $u$ des Leistungsverstärkers und dem Ankerstrom $i_A$. Vereinfachen Sie die 
-		Übertragungsfunktion $\overline{G}_{ui}$ durch Vernachlässigung sehr schneller Dynamikanteile der Strecke, d.h.
-		Vernachlässigung von Polen mit betragsmäßig sehr hohem negativen Realteil. Wie lautet die resultierende
-		vereinfachte Übertragungsfunktion $G_{ui}$? Warum ist diese Vereinfachung zulässig? Verwenden Sie im Folgenden
-		die vereinfachte Übertragungsfunktion $G_{ui}$.\\
-				
-        
-	\end{quote}
-	
-	\subsection{Wurzelortskurve}
-	\begin{quote}
-		Aufgabe:\\
-		Wiederholen Sie das Thema "`Wurzelortskurve"'!\\
-		
-
-    \end{quote}
-    
-    \subsection{Reglerentwurf}
-    Entwerfen Sie einen mit einem PT1-Glied verketteten PI-Regler $K_i(s) = k_i \frac{s-s_{0,i}}{s} \frac{-s_1}{s-s_1}$
-    \begin{quote}
-        \subsubsection{Vorteil dieses Reglers}
-            
-        \begin{quote}
-            Aufgabe:\\
-            Welchen Vorteil besitzt die gewählte Reglerstruktur gegenüber einem reinen PI-
-            Regler? Welche Effekte erwarten Sie für einen reinen PI-Regler im geschlossenen
-            Regelkreis?\\
-            
-        \end{quote}
-
-
-        \subsubsection{Polstelle $s_1$}
-        \begin{quote}
-            Aufgabe:\\
-            Platzieren Sie die Polstelle $s_1$ des Tiefpasses anhand von Überlegungen mit der
-            Wurzelortskurve. Ihr Ziel sollte eine möglichst schnelle Reaktion des Regelkreises
-            sein.\\
-            
-        \end{quote}
-        
-        
-        \subsubsection{Wurzelortskurve}
-
-        \begin{quote}
-            Aufgabe:\\
-            Legen Sie nun weiterhin anhand der Wurzelortskurve die Nullstelle $s_{0,i}$
-            fest, sodass bei einer geeigneten Wahl von $k_i$ des Reglers
-            das Potential besteht, einen schnellen Regler zu entwerfen.\\
-        
-        \end{quote}
-            
-        
-        \subsubsection{Strungantwort}
-
-        \begin{quote}
-            Aufgabe:\\
-            Die Sprungantwort des geschlossenen Kreises soll nach $0,02s$ nur noch eine Regelabweichung von $5\%$
-            aufweisen. Bestimmen Sie $k_i$ mit Hilfe von Simulationen der Führungssprungantwort.\\
-        
-	 	
-        \end{quote}
-
-    \end{quote}
-    
-    
-    \subsection{Störübertragungsfunktion}
-    \begin{quote}
-        Aufgabe:\\
-        Berechnen Sie die Störübertragungsfunktion $\frac{I_A(s)}{D_u(s)}$ des Regelkreises, die den Einfluss
-        einer Störspannung $d_u$ am Eingang des Leistungsverstärkers auf den Ankerstrom $i_A$ beschreibt.
-        Berechnen Sie die Störübertragungsfunktion. Simulieren Sie die Störsprungantwort.\\
-        
-	 	
-    \end{quote}    
-    
-    
-    
-    \subsection{Sensitivitäts- und komplimentäre Sensitivitätsfunktion}
-    \begin{quote}
-        Aufgabe:\\
-        Zeichnen Sie die Amplitudenfrequenzgänge der Sensitivitätsfunktion $S_i(s)$ und der komplementären
-        Sensitivitätsfunktion $T_i (s)$ des geschlossenen Regelkreises in dem Bereich $\omega = 10^{-3}\frac{rad}{s}
-        \ldots 10^{3}\frac{rad}{s}$ um das Verhalten der Stromregelung für den gesamten Frequenzbereich beurteilen zu
-        können.\\
-        Machen Sie Aussagen darüber, für welche Frequenzbereiche der Referenz- und Störgröße gutes Regelverhalten
-        erzielt wird und in welchen Frequenzbereichen auftretendes Messrauschen sich kaum auf die Regelgröße auswirkt.\\
-        
-                        
-	\end{quote}
-		
-	\subsection{Blockstaltbild des Reglers}
-    \begin{quote}
-        Aufgabe:\\
-        Erstellen Sie ein Blockschaltbild des Reglers auf Basis zweier Integratoren, in welchem der PI-Anteil und PT1-Anteil in Reihe geschaltet
-        sind. Die Parameter $k_i$, $s_{0,i}$, $s_1$ sollen direkt in die Verstärkungsblöcke eingehen. Implementieren Sie
-        den kompletten Regelkreis als Scicos-Diagramm und bringen Sie Ihre Simulationsdateien zum Durchführungtermin
-        mit!
-        
-	 	
-    \end{quote}
-    
-    \subsubsection{Regelparameter überprüfen}
+        \subsubsection{Erstellen der Führungsübertragungsfunktion}
         Aufgabe:\\
         Bei Sprüngen der Führungsgröße $r_\omega$ von $0$ auf Werte bis zu $180 \frac{rad}{s}$ soll die
         Stellgrößenbeschränkung von $−5V < u < 5V$ nicht verletzt werden. Überprüfen Sie simulativ, ob Ihr Regler
@@ -232,13 +113,39 @@ xrightmargin=-1.5cm
         \begin{quote}
             
         \end{quote}
-    
-    
-
-
         
-    
-  
+        \subsubsection{Erstellen der Störübertragungsfunktion}
+        Aufgabe:\\
+        Berechnen Sie die Störübertragungsfunktion $\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)}$ vom
+        Lastmoment $m_L$ auf die Winkelgeschwindigkeit $\omega$. Simulieren Sie die Störsprungantwort. Warum ist das
+        Störverhalten des entworfenen Regelkreises nicht brauchbar? Was fällt Ihnen auf, wenn Sie die Pole von
+        $\overline{T}_\omega$ und $\overline{G}_\omega$ vergleichen?
+		\begin{quote}
+			
+		\end{quote}
+		
+		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
+		Aufgabe:\\
+	    Überlegen Sie mit Hilfe der Wurzelortskurve, wie die Nullstelle $s_{0,ω}$ des Reglers verschoben werden muss, um
+	    das Störverhalten zu verbessern. Wählen Sie $s_{0,ω}$ und $k_\omega$ neu, sodass alle vorher genannten
+	    Forderungen an das Führungsverhalten weiterhin erfüllt werden. Wie lauten die neue
+	    Führungsübertragungsfunktion $T_\omega$ und die neue Störübertragungsfunktion $G_{m\omega}$ und deren Pole?
+		\begin{quote}
+			
+		\end{quote}
+		
+	\end{quote}
+	
+	\subsection{Zustandsraummodell}
+	Aufgabe:\\
+    Erweitern Sie Ihre Reglerstruktur in Scicos um eine Anti-Windup-Schaltung nach Abbildung 11. Beziehen Sie sowohl
+    den äußeren als auch den inneren Regler in die Schaltung ein. Realisieren Sie dafür den inneren und äußeren
+    PI-Regler in einer Parallelform mit P- und I-Anteil.
+	\begin{quote}
+		
+		
+	\end{quote}
+	
 \end{quote}
 
 %--------------------------------------------------------------------
