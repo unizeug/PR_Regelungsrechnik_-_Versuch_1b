@@ -71,12 +71,19 @@ pol_G2=roots(G2.den)
 Ti = syslin('c', 202.22547, 202.22547 + s);
 //Erstellen der Übertragungsfunktion G'(w)
 Gstrich = Ti*G2;
+// Nullstellen der Übertragungsfunktion
+nul_Gstrich=roots(Gstrich.num)
+// Polstellen der Übertragungsfunktion
+pol_Gstrich=roots(Gstrich.den)
+//imaginärteile weglöschen
+Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
+
 
 // Erstellen der normierten Faktorisierung der Übertragungsfunktion Gmotor
 
 
 //Quorient der beiden Koeffizienten des Zählers und des Nenners ohne s
-k=coeff(Gmotor.num,0)/coeff(Gmotor.den,0);
+//k=coeff(Gmotor.num,0)/coeff(Gmotor.den,0);
 
 // Normiert faktorisierte Übertragungsfunktion Gmotor
 //Gmotor_norm=k*(-nul_Gmotor(1)^(-1)*s+1)/(((-pol_Gmotor(1))^(-1)*s+1)*((-pol_Gmotor(2))^(-1)*s+1))
@@ -97,52 +104,58 @@ k=coeff(Gmotor.num,0)/coeff(Gmotor.den,0);
 //pol_Gui = roots(Gui.den)
 //
 //
-////Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
-////Ü-Funktion
-////clf(1);scf(1);
-////bode([Gmotor;Gui],0.001,300000,['Gmotor';'Gp1']); 
-////xgrid();
-//
-////Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
-//s0i=pol_Gui(1);
-//// die Polstelle des Reglers wird auf die Nullstelle der Stecke gelegt
-//s1=nul_Gui(1)
-//// Die verstärkung des Reglers
-//V=40000;
-////der Proportionalteil
-//Ki = V;
-//
-////die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
-//K = Ki*(((s-s0i)/s)*(-s1/(s-s1)));
-////Die Übertragungsfunktion des PI-Reglers, der mit einem PT1-Glied verkette ist
-////- normiert
-////K2= (-Ki*s0i)*(1/s)*((-s/s0i)+1)*(1/((-s/s1)+1));
-//
-//// Plotten der Wurzelortskurve (WOK) von Gui*K
-//clf(2);scf(2);
-//evans(Gui*K);
+//Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
+//Ü-Funktion
+clf(1);scf(1);
+bode(Gstrich,0.001,300000,'Gstrich'); 
+xgrid();
+
+//Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
+s0w=pol_Gstrich(2);
+// Die verstärkung des Reglers
+V=1/20;
+//der Proportionalteil
+Kw = V;
+
+//die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
+K = Kw*(((s-s0w)/s));
+//Die Übertragungsfunktion des PI-Reglers, der mit einem PT1-Glied verkette ist
+//- normiert
+//K2= (-Ki*s0i)*(1/s)*((-s/s0i)+1)*(1/((-s/s1)+1));
+
+offenerKreis = Gstrich*K;
+offenerKreis = syslin('c',real(offenerKreis.num),real(offenerKreis.den))
+// Plotten der Wurzelortskurve (WOK) von Gui*K
+clf(2);scf(2);
+evans(offenerKreis);
 //legend("WOK des offenen Regelkreises",3);
-//xgrid(2);
-//
-//
-////Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
-//clf(3);scf(3);
-//[w, db, phi] = bode_w(Gui*K, 10^(-3), 10^3); 
-//legend("Offener Regelkreis",3);
-//xgrid(3);
-//
+xgrid();
+
+
+//Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
+clf(3);scf(3);
+[w, db, phi] = bode_w(offenerKreis, 10^(-3), 10^3); 
+legend("Offener Regelkreis",3);
+xgrid(3);
+
 //// Übertragungsfunktion des geschlossenen Regelkreises
-//GKgeschlossen = (Gui*K/(1+Gui*K))
-//
-////erstellen der Sprungantwort auf den Geschlossenen Kreis
-//t=[0:0.001:0.5];
-//h=csim('step',t,GKgeschlossen);
-//
-////Plotten der Sprungantwort auf den Geschlossenen Kreis
-//clf(4);scf(4);
-//plot2d(t,h);
-//xtitle("Sprungantwort des Geschlossene Kreises","Zeit [s]","Ankerstrom [A]");
-//xgrid();
+GKgeschlossen = (Gstrich*K/(1+Gstrich*K))
+GKgeschlossen = syslin('c',real(GKgeschlossen.num),real(GKgeschlossen.den))
+
+//erstellen der Sprungantwort auf den Geschlossenen Kreis
+t=[0:0.001:0.5];
+h=csim('step',t,GKgeschlossen);
+
+//Plotten der Sprungantwort auf den Geschlossenen Kreis
+clf(4);scf(4);
+plot2d(t,h);
+xtitle("Sprungantwort des Geschlossene Kreises","Zeit [s]","Ankerstrom [A]");
+xgrid();
+
+
+
+
+//bode_w_farbe(Ti, -3, 3, 'Bodeplot', %f, 1000, 5);
 //
 ////Übertragungsfunktion der Störfunktion bei einer Störung auf den Eingang des 
 ////Leistungsverstärkers
