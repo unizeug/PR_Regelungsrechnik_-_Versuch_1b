@@ -56,11 +56,74 @@ xrightmargin=-1.5cm
 \section{Vorbereitungsaufgaben}
 \begin{quote}
 	\subsection{Übertragungsfunktion}
-    Aufgabe:\\
-    Ermittlen Sie die Übertragungsfunktion $G_\omega^{'} (s) = \frac{\Omega(s)}{R_i (s)}$ der nun relevanten
+    \hspace{-2em}
+    Aufgabe:
+    \hspace{-2em}Ermittlen Sie die Übertragungsfunktion $G_\omega^{'} (s) = \frac{\Omega(s)}{R_i (s)}$ der nun relevanten
     Regelstrecke, die den unterlagerten Stromregelkreis aus Versuchsteil 1a enthält.\\
 	\begin{quote}
-		
+	   Zuerst errechnen wir die Zweite Regelstrecke $G_2$:\\
+	   Der Zustandsvektor $x(t)$ besteht aus der Winkelgeschwindigkeit $\omega$.
+        \begin{equation*}
+            \begin{split}
+                x(t) = 
+                    \begin {pmatrix}
+                        \omega(t)\\
+                    \end{pmatrix}
+            \end{split}
+        \end{equation*}
+        
+        Die Stellgröße $u(t)$ besteht aus dem Ankerstrom $i_A(t)$.
+        \begin{equation*}
+            \begin{split}
+                u(t) = i_A (t)
+            \end{split}
+        \end{equation*}
+        
+        Als Ausgangsgröße $y(t)$ wird die Winkelgeschwindigkeit $\omega$ genommen.
+        \begin{equation*}
+            \begin{split}
+                y(t) = \omega(t)
+            \end{split}
+        \end{equation*}
+        
+        Daraus ergibt sich folgendes Zustandesmodell:
+        \begin{equation*}
+            \begin{split}
+                   \dot{x} &=
+                   \begin{pmatrix}
+                        \dot{\omega}(t)\\
+                   \end{pmatrix}\\ &=
+                   \begin{pmatrix}
+                        -\frac{c_\mu}{\frac{1}{2}M_s r^2_s + J_m}\\
+                   \end{pmatrix} x(t) +
+                   \begin{pmatrix}
+                       \frac{k_m}{\frac{1}{2}M_sr^2_s + J_m}\\
+                   \end{pmatrix} u(t) +
+                   \begin{pmatrix}
+                       \frac{-1}{\frac{1}{2}M_sr^2_s + J_m}\\
+                   \end{pmatrix} m_L(t)\\
+                   y(t) &= 
+                   \begin{pmatrix}
+                        1\\
+                   \end{pmatrix} x(t) + 0u(t)
+            \end{split}
+        \end{equation*}
+        
+        Daraus folgt folgende Übertragungsfunktion $G_2$:
+        \begin{equation*}
+        	\begin{split}
+        		G_2 (s) = \frac{2351,6287}{0,0178492 + s}
+        	\end{split}
+        \end{equation*}
+        
+        Nun können wir $G_\omega^{'}$ berechnen:
+	
+		\begin{equation*}
+        	\begin{split}
+        		G_\omega^{'} (s) &= T_1(s) G_2(s) = \frac{G_1 (s) K_1(s)}{1 + G_1 (s) K_1 (s)} G_2 (s)\\ \\
+        		&= \frac{475559.23}{3.6095577 + 202.24332s + s^2}
+        	\end{split}
+        \end{equation*}
 		
         
 	\end{quote}
