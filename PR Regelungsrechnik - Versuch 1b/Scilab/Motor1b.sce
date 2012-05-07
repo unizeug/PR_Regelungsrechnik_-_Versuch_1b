@@ -9,6 +9,11 @@
 // Dirk: cd "/media/daten/workspace/PR_Regelungsrechnik_-_Versuch_1a/PR Regelungsrechnik - Versuch 1a/Scilab/"
 
 
+function plot_to_come(title)
+    
+    
+endfunction
+
 
 // Fehlermeldung bei neudefinition vermeiden
 funcprot(0);
@@ -19,112 +24,86 @@ exec("bode_w.sci", -1);
 
 
 
-//Konstaten
+// Konstaten
 u=1
 
-//Gleichstrommotor
+// Gleichstrommotor
 RA=10.6;        //[ohm]Ankerwiderstand
 LA=0.82E-3;     //[Henry] Ankerinduktivität
 km=0.0527;      //[NmA^-1] Motorkonstante
 JM=1.16E-6;     //[KGm^2] Ankerträgheitsmoment
 cmu=0.4E-6;    //[Nms] Reibungskonstante
 
-//Massescheibe
+// Massescheibe
 Ms= 0.068;      //[Kg] Masse
 rs= 0.025;      //[m] Radius
 Js= 0.5*Ms*rs^2 //[KGm^2] Massescheibeträgheitsmoment
 
-//Leistungsverstärker
+// Leistungsverstärker
 Tv=0.2E^-3;    //[s] Zeitkonstante
 V = 3;          //[]Verstärkung
 
-//Störungsgröße
+//S törungsgröße
 mL=0;
 
 // Definiert ein Polynom s mit Nullstelle = 0
 s = poly(0, 's');
 
 // Lineares system
-
 A = [-(cmu)/(Js+JM)];
-
 B = [(km)/(Js+JM)];
-
 C = [1];
-
 D = [0];
+
+
 
 // Übertragungsfunktion
 
-//Erstellen eines linear kontinuerliche Systems
+// Erstellen eines linear kontinuerliche Systems
 Gss = syslin('c',A,B,C);
 
-//Erstellen der Übertragungsfunktion
+// Erstellen der Übertragungsfunktion
 G2 =  clean(ss2tf(Gss))
 
-// Nullstellen der Übertragungsfunktion
+// Null-/ Polstellen der Übertragungsfunktion
 nul_G2=roots(G2.num)
-// Polstellen der Übertragungsfunktion
 pol_G2=roots(G2.den)
 
-//komplimentäre Übertragungsfunktion von der Stromregelung
+// komplimentäre Übertragungsfunktion der Stromregelung
 Ti = syslin('c', 202.22547, 202.22547 + s);
-//Erstellen der Übertragungsfunktion G'(w)
+
+// Erstellen der Übertragungsfunktion G'(w)
 Gstrich = Ti*G2;
-// Nullstellen der Übertragungsfunktion
-nul_Gstrich=roots(Gstrich.num)
-// Polstellen der Übertragungsfunktion
-pol_Gstrich=roots(Gstrich.den)
-//imaginärteile weglöschen
+
+// Null-/ Polstellen der Übertragungsfunktion G'(w)
+nul_Gstrich=roots(Gstrich.num);
+pol_Gstrich=roots(Gstrich.den);
+
+// imaginärteile weglöschen
 Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 
-// Erstellen der normierten Faktorisierung der Übertragungsfunktion Gmotor
 
-
-//Quorient der beiden Koeffizienten des Zählers und des Nenners ohne s
-//k=coeff(Gmotor.num,0)/coeff(Gmotor.den,0);
-
-// Normiert faktorisierte Übertragungsfunktion Gmotor
-//Gmotor_norm=k*(-nul_Gmotor(1)^(-1)*s+1)/(((-pol_Gmotor(1))^(-1)*s+1)*((-pol_Gmotor(2))^(-1)*s+1))
-
-//kneu=k/pol_Gmotor(1)+0.0004314;
-
-// normiert faktorisierte Ü-Fkt. ohne die schnellste Polstelle
-//Gp=kneu*(-nul_Gmotor(1)^(-1)*s+1)/(((-pol_Gmotor(2))^(-1)*s+1))
-//
-//// Kontrolle, ob die beiden Übertragungsfunktionen den selben Wert bei f=0 haben
-//check1=horner(Gmotor,0)-horner(Gmotor_norm,0);
-//check=horner(Gmotor,0)-horner(Gp,0);
-//
-//
-//Gmotor_norm1=syslin('c',real(Gmotor_norm.num),real(Gmotor_norm.den))
-//Gui = syslin('c',real(Gp.num), real(Gp.den))
-//nul_Gui = roots(Gui.num)
-//pol_Gui = roots(Gui.den)
-//
-//
-//Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
-//Ü-Funktion
+// Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
+// Übertragungs-Funktion
 clf(1);scf(1);
 bode(Gstrich,0.001,300000,'Gstrich'); 
 xgrid();
 
-//Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
+// Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
 s0w=pol_Gstrich(2);
-// Die verstärkung des Reglers
+
+// verstärkung und Proportionalteil des Reglers
 V=1/20;
-//der Proportionalteil
 Kw = V;
 
-//die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
+// die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K = Kw*(((s-s0w)/s));
-//Die Übertragungsfunktion des PI-Reglers, der mit einem PT1-Glied verkette ist
-//- normiert
-//K2= (-Ki*s0i)*(1/s)*((-s/s0i)+1)*(1/((-s/s1)+1));
+
 
 offenerKreis = Gstrich*K;
 offenerKreis = syslin('c',real(offenerKreis.num),real(offenerKreis.den))
+
 // Plotten der Wurzelortskurve (WOK) von Gui*K
 clf(2);scf(2);
 evans(offenerKreis);
@@ -134,7 +113,7 @@ xgrid();
 
 //Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
 clf(3);scf(3);
-[w, db, phi] = bode_w(offenerKreis, 10^(-3), 10^3); 
+bode_w(offenerKreis, 10^(-3), 10^3); 
 legend("Offener Regelkreis",3);
 xgrid(3);
 
