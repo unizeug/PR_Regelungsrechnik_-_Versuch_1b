@@ -151,7 +151,13 @@ xrightmargin=-1.5cm
         Der Reglerentwurf soll nach dem Frequenzkennlinienverfahren durchgeführt werden. Zeichnen Sie dafür zunächst
         das Bode-Diagramm von $G_\omega^{'}$.\\   
         \begin{quote}
-                        
+            \begin{figure}[H]
+            \centering
+                \includegraphics[scale=0.5, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/BodevonGstrich}
+                    \caption{caption}
+                    \label{fig:BodevonGstrich}
+            \end{figure}
+       
         \end{quote}
 
         \subsubsection{Reglerentwurf}
@@ -163,7 +169,7 @@ xrightmargin=-1.5cm
         Kenngrößen ``Überschwingweite'' , ``Ausregelzeit'' , ``Phasenreserve'' und ``Durchtrittsfrequenz''
         miteinander in Beziehung stehen!
 		\begin{quote} 
-		
+		      
 		\end{quote}
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
@@ -174,7 +180,13 @@ xrightmargin=-1.5cm
         Wie lautet die Übertragungsfunktion $\overline{T}_\omega$ des bis hierhin entworfenen geschlossenen
         Regelkreises?
         \begin{quote}
-            
+            \begin{equation*}
+            	\begin{split}
+            		\overline{T}_\omega &= \frac{G_\omega^{'} K_\omega}{1 + G_\omega^{'} K_\omega}\\
+            		&= \frac{1531.9576s +  171663.42s^2 +  4809358.2s^3 +  23777.961s^4}{1531.9576s +  171676.45s^2 + 
+            		4810818.3s^3 +  64687.541s^4 +  404.48664s^5 +  1s^6}
+            	\end{split}
+            \end{equation*}
         \end{quote}
         
         \subsubsection{Erstellen der Störübertragungsfunktion}
@@ -184,7 +196,11 @@ xrightmargin=-1.5cm
         Störverhalten des entworfenen Regelkreises nicht brauchbar? Was fällt Ihnen auf, wenn Sie die Pole von
         $\overline{T}_\omega$ und $\overline{G}_\omega$ vergleichen?
 		\begin{quote}
-			
+			\begin{equation*}
+            	\begin{split}
+            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{1}{1+ G_\omega^{'} T_\omega}
+            	\end{split}
+            \end{equation*}
 		\end{quote}
 		
 		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
