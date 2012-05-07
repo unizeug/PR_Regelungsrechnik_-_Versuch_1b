@@ -43,7 +43,7 @@ Js= 0.5*Ms*rs^2 //[KGm^2] Massescheibeträgheitsmoment
 Tv=0.2E^-3;    //[s] Zeitkonstante
 V = 3;          //[]Verstärkung
 
-//S törungsgröße
+// Störungsgröße
 mL=0;
 
 // Definiert ein Polynom s mit Nullstelle = 0
@@ -86,9 +86,10 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 // Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
 // Übertragungs-Funktion
-clf(1);scf(1);
-bode(Gstrich,0.001,300000,'Gstrich'); 
-xgrid();
+//clf(1);scf(1);
+//bode(Gstrich,0.001,300000,'Gstrich');
+//xtitle("Bodeplot von Gstrich");
+//xgrid();
 
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
 s0w=pol_Gstrich(2);
