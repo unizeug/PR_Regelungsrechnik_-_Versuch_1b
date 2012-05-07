@@ -106,9 +106,10 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 //
 //Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
 //Ü-Funktion
-clf(1);scf(1);
-bode(Gstrich,0.001,300000,'Gstrich'); 
-xgrid();
+//clf(1);scf(1);
+//bode(Gstrich,0.001,300000,'Gstrich');
+//xtitle("Bodeplot von Gstrich");
+//xgrid();
 
 //Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
 s0w=pol_Gstrich(2);
@@ -125,10 +126,10 @@ K = Kw*(((s-s0w)/s));
 
 offenerKreis = Gstrich*K;
 offenerKreis = syslin('c',real(offenerKreis.num),real(offenerKreis.den))
-// Plotten der Wurzelortskurve (WOK) von Gui*K
-clf(2);scf(2);
-evans(offenerKreis);
-//legend("WOK des offenen Regelkreises",3);
+//// Plotten der Wurzelortskurve (WOK) von Gui*K
+//clf(2);scf(2);
+//evans(offenerKreis);
+////legend("WOK des offenen Regelkreises",3);
 xgrid();
 
 
