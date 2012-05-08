@@ -12,23 +12,13 @@
 // Fehlermeldung bei neudefinition vermeiden
 funcprot(0);
 
-PROCESS_PLOTS = 1;;
-
-x = [1,2]
-y = [2,5]
-
-
-
-globalPlot(x,y,5);
-
-
-
-
-
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
 exec("globalPlot.sci", -1);
+
+PROCESS_PLOTS = 1;
+
 
 
 // Konstaten
@@ -48,7 +38,7 @@ Js= 0.5*Ms*rs^2 //[KGm^2] Massescheibeträgheitsmoment
 
 // Leistungsverstärker
 Tv=0.2E^-3;    //[s] Zeitkonstante
-V = 3;          //[]Verstärkung
+Verst = 3;          //[]Verstärkung
 
 // Störungsgröße
 mL=0;
@@ -99,27 +89,28 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 //xgrid();
 
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
-s0w=pol_Gstrich(2);
+//s0w=pol_Gstrich(2);
+s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
-V2= 1/10   //1/45;
+V2= 1/45   //1/45;
 Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K2 = Kw*(((s-s0w)/s));
 
-offenerKreis = Gstrich*K2;
-offenerKreis = syslin('c',real(offenerKreis.num),real(offenerKreis.den))
+offenerKreis_2 = Gstrich*K2;
+offenerKreis = syslin('c',real(offenerKreis_2.num),real(offenerKreis_2.den))
 // Plotten der Wurzelortskurve (WOK) von Gui*K
 clf(2);scf(2);
-evans(offenerKreis,1/45);
+evans(offenerKreis,100);
 //legend("WOK des offenen Regelkreises",3);
 xgrid();
 
 
 //Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
 clf(3);scf(3);
-[w, db, phi] = bode_w(offenerKreis, 10^(-3), 10^3); 
+[w, db, phi] = bode_w(offenerKreis, 10^(-6), 10^6); 
 legend("Offener Regelkreis",3);
 xgrid(3);
 
@@ -128,13 +119,25 @@ GKgeschlossen = (Gstrich*K2/(1+Gstrich*K2))
 GKgeschlossen = syslin('c',real(GKgeschlossen.num),real(GKgeschlossen.den))
 
 //erstellen der Sprungantwort auf den Geschlossenen Kreis
-t=[0:0.001:0.5];
+t=[0:0.001:0.7];
 h=csim('step',t,GKgeschlossen);
 
 //Plotten der Sprungantwort auf den Geschlossenen Kreis
 
 //globalplot (scf & clf ist schon drin)
-globalPlot(t,h);
+
+p20 = 1.20.*ones(t);
+p02 = 1.02.*ones(t);
+p98 = 0.98.*ones(t);
+t6=[0.6,0.60001];
+p6=[0,1.4];
+
+globalPlot(t,h,8)
+plot2d(t,p02,3);
+plot2d(t,p98,3);
+plot2d(t,p20,3);
+plot2d(t6,p6,5);
+
 xtitle("Sprungantwort des Geschlossene Kreises","Zeit [s]","Ankerstrom [A]");
 xgrid();
 
@@ -145,7 +148,7 @@ xgrid();
 //
 //Übertragungsfunktion der Störfunktion bei einer Störung auf den Eingang des 
 //Leistungsverstärkers
-Gmw = 1/(1+Gstrich*K2);
+Gmw = Gstrich/(1+Gstrich*K2);
 
 //erstellen der Spungantwort auf die Störung
 t=[0:0.001:1];
@@ -157,8 +160,7 @@ h2=csim('step',t,Gmw);
 MatrizenscheissvonGmw = tf2ss(Gmw);
 
 //plotten der Störsprungantwort
-clf(5);scf(5);
-plot2d(t,h2+MatrizenscheissvonGmw(5));
+globalPlot(t,h2+MatrizenscheissvonGmw(5),9);
 xtitle("Störsprungantwort","Zeit [s]","Winkelgeschindigkeit [rad/s]");
 xgrid();
 
