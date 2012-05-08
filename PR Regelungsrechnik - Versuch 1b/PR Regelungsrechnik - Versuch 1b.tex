@@ -168,12 +168,36 @@ xrightmargin=-1.5cm
         und das Ü̈berschwingen einen Wert von $20\%$ nicht übersteigt. Rufen Sie sich in Erinnerung, wie die
         Kenngrößen ``Überschwingweite'' , ``Ausregelzeit'' , ``Phasenreserve'' und ``Durchtrittsfrequenz''
         miteinander in Beziehung stehen!
-		\begin{quote} 
-		      ``Überschwingweite'': Bei der Überschwingweite handelt es sich um die maximale Abweichung der Reglegröße vom
-		      Sollwert, $\Delta y = max(y) - y_{soll}$, nach dem die Relgröße die Sollgröße überschritten hat.       
-		      \cite{Ueberschwingweite}
-		      
-		\end{quote}
+        \begin{quote} 
+            ``Überschwingweite'': Bei der Überschwingweite handelt es sich um die maximale Abweichung der Reglegröße vom
+            Sollwert, $\Delta y = max(y) - y_{soll}$, nach dem die Relgröße die Sollgröße überschritten hat.       
+            \cite{Ueberschwingweite}
+            
+            
+            
+            
+            
+            
+            \vspace{2em}
+            Phasenreserve und Überschwingweite hängen folgendermaßen zusammen:\\
+            \begin{equation}
+                \begin{split}
+                \varphi_R [^\circ] + e_{max} [\%] \approx 70
+                \end{split}
+            \end{equation}
+            
+            \vspace{1em}
+            Auch Amplitudenreserve und Anstiegszeit hängen voneinander ab. Je kürzer die Anstiegszeit ist desto
+            höher ist die maximale Überschwingweite und desto geringer ist auch die Amplitudenreserve. In
+            der Praxis wird oft auch der Zusammenhang von Durchtrittsfrequenz und Anstiegszeit
+            verwendet:
+            \begin{equation}
+            \begin{split}
+                \omega_D = \frac{1}{T_{a,50}} \p (1,5- \frac{e_{max} [\%]}{250})
+            \end{split}
+            \end{equation}
+            \cite{krachler}
+        \end{quote}
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
         Aufgabe:\\
@@ -264,6 +288,9 @@ xrightmargin=-1.5cm
 \begin{thebibliography}{999}
 \bibitem {Ueberschwingweite} Prof. Dr.-Ing. Raisch, Jörg; Dipl.-Ing. Hess, Anne-Katrin; Dipl.-Ing. Seel, Thomas:
 Grundlagen der Regelungstechnik - 4.Praktikum, S.5
+
+\bibitem{krachler}Christian Krachler:
+Reglersynthese nach dem Frequenzkennlinienverfahren, S16, S22
 
 %Name, Vorname.; evtl. Name2, Vorname2.: Titel des Dokumentes
 %oder Buches, Zeitschrift/Verlag/URL (Auflage, Erscheinungsort, -jahr), ggf. Seitenzahlen
