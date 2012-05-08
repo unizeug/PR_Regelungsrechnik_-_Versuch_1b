@@ -19,8 +19,6 @@ exec("globalPlot.sci", -1);
 
 PROCESS_PLOTS = 1;
 
-
-
 // Konstaten
 u=1
 
