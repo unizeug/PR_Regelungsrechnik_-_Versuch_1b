@@ -25,7 +25,6 @@ globalPlot(x,y,5);
 
 
 
-
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
@@ -122,8 +121,8 @@ xgrid();
 
 //Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
 clf(3);scf(3);
-//bode_w(offenerKreis, 10^(-3), 10^3); 
-//legend("Offener Regelkreis",3);
+[w, db, phi] = bode_w(offenerKreis, 10^(-3), 10^3); 
+legend("Offener Regelkreis",3);
 xgrid(3);
 
 //// Übertragungsfunktion des geschlossenen Regelkreises
@@ -146,34 +145,34 @@ xgrid();
 
 //bode_w_farbe(Ti, -3, 3, 'Bodeplot', %f, 1000, 5);
 //
-////Übertragungsfunktion der Störfunktion bei einer Störung auf den Eingang des 
-////Leistungsverstärkers
-//Gdu = Gui/(1+Gui*K);
-//
-////erstellen der Spungantwort auf die Störung
-//t=[0:0.001:1];
-//h1=csim('step',t,Gdu);
-//
-//
-////errechnen des Faktors D von Gdu um später beim plotten den Fehler ausgleichen
-////zu können
-//MatrizenscheissvonGdu = tf2ss(Gdu);
-//
-////plotten der Störsprungantwort
-//clf(5);scf(5);
-//plot2d(t,h1+MatrizenscheissvonGdu(5));
-//xtitle("Störsprungantwort","Zeit [s]","Ankerstrom [A]");
-//xgrid();
-//
-////Sensitivitätsfunktion
-//Si = 1/(1+Gui*K)
+//Übertragungsfunktion der Störfunktion bei einer Störung auf den Eingang des 
+//Leistungsverstärkers
+Gmw = 1/(1+Gstrich*K2);
+
+//erstellen der Spungantwort auf die Störung
+t=[0:0.001:1];
+h2=csim('step',t,Gmw);
+
+
+//errechnen des Faktors D von Gdu um später beim plotten den Fehler ausgleichen
+//zu können
+MatrizenscheissvonGmw = tf2ss(Gmw);
+
+//plotten der Störsprungantwort
+clf(5);scf(5);
+plot2d(t,h2+MatrizenscheissvonGmw(5));
+xtitle("Störsprungantwort","Zeit [s]","Ankerstrom [A]");
+xgrid();
+
+//Sensitivitätsfunktion
+Si = 1/(1+Gstrich*K2)
 ////Komplimentäre Sensitivitätsfunktion
-//Ti = (Gui*K)/(1+Gui*K)
+Tw = (Gstrich*K2)/(1+Gstrich*K2)
 //
 ////plotten der Sensitivitätsfunktion sowie der komplimantären Sensitivitätsfunktion
 //clf(6);scf(6);
 //bode_w_farbe(Si, -3, 3, 'Bodeplot', 'false', 1000, 2);
-//bode_w_farbe(Ti, -3, 3, 'Bodeplot', %f, 1000, 5);
+////bode_w_farbe(Ti, -3, 3, 'Bodeplot', %f, 1000, 5);
 //legend("Sensitivitätsfunktion","Komplimentäre Sensitivitätsfunktion",3);
 //xgrid();
 //
