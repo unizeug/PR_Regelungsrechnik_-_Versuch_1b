@@ -12,23 +12,13 @@
 // Fehlermeldung bei neudefinition vermeiden
 funcprot(0);
 
-PROCESS_PLOTS = 1;;
-
-x = [1,2]
-y = [2,5]
-
-
-
-globalPlot(x,y,5);
-
-
-
-
-
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
 exec("globalPlot.sci", -1);
+
+PROCESS_PLOTS = 0;
+
 
 
 // Konstaten
@@ -157,8 +147,7 @@ h2=csim('step',t,Gmw);
 MatrizenscheissvonGmw = tf2ss(Gmw);
 
 //plotten der Störsprungantwort
-clf(5);scf(5);
-plot2d(t,h2+MatrizenscheissvonGmw(5));
+globalPlot(t,h2+MatrizenscheissvonGmw(5));
 xtitle("Störsprungantwort","Zeit [s]","Winkelgeschindigkeit [rad/s]");
 xgrid();
 
