@@ -79,7 +79,7 @@ xrightmargin=-1.5cm
             \end{split}
         \end{equation*}
         
-        Als Ausgangsgröße $y(t)$ wird die Winkelgeschwindigkeit $\omega()$ genommen.
+        Als Ausgangsgröße $y(t)$ wird die Winkelgeschwindigkeit $\omega(t)$ genommen.
         \begin{equation*}
             \begin{split}
                 y(t) = \omega(t)
@@ -248,19 +248,62 @@ xrightmargin=-1.5cm
 		\begin{quote}
 			\begin{equation*}
             	\begin{split}
-            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{1}{1+ G_\omega^{'} T_\omega}
+            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{G_\omega^{'}}{1+ G_\omega^{'} T_\omega}
             	\end{split}
             \end{equation*}
+            
+            Die Störsprungantwort sieht folgendermaßen aus:
+            \begin{figure}[H]
+                \centering
+                    \includegraphics[scale=0.5, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Stoersprungantwortlangsam}
+                        \caption{Langsame Stoersprungantwort}
+                        \label{fig:filename}
+            \end{figure}
+    
+            Es fällt auf, dass die Störsprungantwort extram langsam ist und daher vermultich nicht zu gebrauchen.Selbst
+            nach über $150$s hat der Regler es nicht geschafft die Störung auszuregeln.\vspace{1em}
+             
+            Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_\omega$ fällt es auf, dass sie
+            nicht gleich viele haben. $\overline{T}_\omega$ hat 6 Polstellen während $\overline{G}_\omega$ 5 Polstellen hat.
+            
 		\end{quote}
 		
 		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
 		Aufgabe:\\
-	    Überlegen Sie mit Hilfe der Wurzelortskurve, wie die Nullstelle $s_{0,ω}$ des Reglers verschoben werden muss, um
-	    das Störverhalten zu verbessern. Wählen Sie $s_{0,ω}$ und $k_\omega$ neu, sodass alle vorher genannten
+	    Überlegen Sie mit Hilfe der Wurzelortskurve, wie die Nullstelle $s_{0,\omega}$ des Reglers verschoben werden muss, um
+	    das Störverhalten zu verbessern. Wählen Sie $s_{0,\omega}$ und $k_\omega$ neu, sodass alle vorher genannten
 	    Forderungen an das Führungsverhalten weiterhin erfüllt werden. Wie lauten die neue
 	    Führungsübertragungsfunktion $T_\omega$ und die neue Störübertragungsfunktion $G_{m\omega}$ und deren Pole?
 		\begin{quote}
+			Nun verschieben wir die Nullstelle weiter in den Negativen bereich. Dadurch haben jetzt das neue $T_\omega$ und das
+			neue $G_{m\omega}$ genau gleich viele Pole. Das liegt daran, dass nicht mehr automatisch bei $T_\omega$ ein Pol
+			eliminiert wird, der bei $G_{m\omega}$ erhalten bleibt.\\
+			Da wir die Nullstelle $s_{0\omega}$ auf die Stelle $-12$ gelegt haben und mit einer Verstärkung von $\frac{1}{45}$
+			eingestellt haben, hat das positive Auswirkungen auf die Störübertragungsfunktion.
 			
+			\begin{figure}[H]
+            \centering
+                \includegraphics[scale=0.5, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Stoersprungantwortschnell}
+                    \caption{schnelle Störsprungantwort}
+                    \label{fig:Stoersprungantwortschnell}
+            \end{figure}
+            
+            Auch die Sprungantwort erfüllt mit diesen Werten alle Bedingungen:
+            \begin{figure}[H]
+            \centering
+                \includegraphics[scale=0.5, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Sprungantwortschnell}
+                    \caption{Sprungantwort}
+                    \label{fig:./Bilder/Sprungantwortschnell}
+            \end{figure}
+    
+    
+            Die aus diesen Voraussetzungen entstehenden Übertragungsfunktionen $T_\omega$ und $G_{m\omega}$ lauten:
+            \begin{equation*}
+            	\begin{split}
+            		T_\omega = \frac{105679.83 + 10567.983s}{105679.83 + 10571.592s + 202.24332s^2 + s^3}\\
+            		G_{m\omega} = \frac{475559.23s}{105679.83 + 10571.592s + 202.24332s^2 + s^3}
+            	\end{split}
+            \end{equation*}
 		\end{quote}
 		
 	\end{quote}
