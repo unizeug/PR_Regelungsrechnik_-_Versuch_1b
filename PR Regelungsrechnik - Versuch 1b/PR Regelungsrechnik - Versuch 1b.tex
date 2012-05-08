@@ -143,7 +143,17 @@ xrightmargin=-1.5cm
         Aufgabe:\\
         Begründen Sie, warum diese Reglerstruktur sinnvoll ist.\\
 		\begin{quote}
-			
+			Die zu regelnde Strecke $G_\omega^{'}$ weist zwei Pole auf der negativen Reellen achse auf und zwar bei\\
+			\vspace{1em}
+			$pol_{G\omega^{'}}_1 = - 0,0178492$\\
+			\vspace{1em}
+			$pol_{G\omega^{'}}_2 = - 202.22547$\\
+			\vspace{1em}
+			Mit der gewählten Reglerstruktur haben wir die Möglichkeit einerseits den langsamen Pol der Strecke zu eliminieren
+			und zusätzlich einen Integrierenden Anteil in den Regler zu bringen. Dadurch wird eine bleibende Regelabweichung
+			verhindert.\\
+			Die resultierende Wurzelortskurve des Kreises zeigt, dass für eine gewisse mindestverstärkung der Regelkreis
+			asymptotisch stabil bleibt.
 		\end{quote}
 		
 		\subsubsection{Bode-Diagramm}
@@ -198,6 +208,20 @@ xrightmargin=-1.5cm
             \end{equation}
             \cite{krachler}
         \end{quote}
+		\begin{quote} 
+		      ``Überschwingweite'': Bei der Überschwingweite handelt es sich um die maximale Abweichung der Reglegröße vom
+		      Sollwert, $\Delta y = max(y) - y_{soll}$, nach dem die Relgröße die Sollgröße überschritten hat.       
+		      \cite{Ueberschwingweite}\\
+		      \vspace{1em}
+		      ``Ausregelzeit'' : Die Ausregelzeit ist die Zeit bis die Regelgröße nach einer sprungförmigen Änderung der
+		      Führungs- oder Störgröße einen Toleranzbereich um den Sollwert erreicht und diesen Toleranzbereich anschließend
+		      nicht mehr verläßt.
+		      \cite{Ausregelzeit}\\
+		      \vspace{1em}
+		      ``Durchtrittsfrequenz'': Bei der Durchtrittsfrequenz handelt es sich um diejenige Frequenz bei der der
+		      Amplitudenfrequenzgang die $0dB$ Achse schneidet.\\
+		      
+		\end{quote}
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
         Aufgabe:\\
@@ -287,6 +311,8 @@ xrightmargin=-1.5cm
 %--------------------------------------------------------------------
 \begin{thebibliography}{999}
 \bibitem {Ueberschwingweite} Prof. Dr.-Ing. Raisch, Jörg; Dipl.-Ing. Hess, Anne-Katrin; Dipl.-Ing. Seel, Thomas:
+Grundlagen der Regelungstechnik - 4.Praktikum, S.5
+\bibitem {Ausregelzeit} Prof. Dr.-Ing. Raisch, Jörg; Dipl.-Ing. Hess, Anne-Katrin; Dipl.-Ing. Seel, Thomas:
 Grundlagen der Regelungstechnik - 4.Praktikum, S.5
 
 \bibitem{krachler}Christian Krachler:
