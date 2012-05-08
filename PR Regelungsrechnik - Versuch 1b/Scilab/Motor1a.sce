@@ -102,9 +102,9 @@ s0i=pol_Gui(1);
 // die Polstelle des Reglers wird auf die Nullstelle der Stecke gelegt
 s1=nul_Gui(1)
 // Die verstärkung des Reglers
-V=40000;
+V1=40000;
 //der Proportionalteil
-Ki = V;
+Ki = V1;
 
 //die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K = Ki*(((s-s0i)/s)*(-s1/(s-s1)));

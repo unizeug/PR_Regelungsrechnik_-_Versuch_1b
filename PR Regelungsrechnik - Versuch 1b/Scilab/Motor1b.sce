@@ -69,7 +69,7 @@ nul_G2=roots(G2.num)
 pol_G2=roots(G2.den)
 
 // komplimentäre Übertragungsfunktion der Stromregelung
-Ti = syslin('c', 202.22547, 202.22547 + s);
+//Ti = syslin('c', 202.22547, 202.22547 + s);
 
 // Erstellen der Übertragungsfunktion G'(w)
 Gstrich = Ti*G2;
@@ -85,27 +85,27 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 // Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
 // Übertragungs-Funktion
-clf(1);scf(1);
-bode(Gstrich,0.001,300000,'Gstrich');
-xtitle("Bodeplot von Gstrich");
-xgrid();
+//clf(1);scf(1);
+//bode(Gstrich,0.001,300000,'Gstrich');
+//xtitle("Bodeplot von Gstrich");
+//xgrid();
 
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
 s0w=pol_Gstrich(2);
 
 // verstärkung und Proportionalteil des Reglers
-V=1/20;
-Kw = V;
+V2= 1/10   //1/45;
+Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K2 = Kw*(((s-s0w)/s));
 
 offenerKreis = Gstrich*K2;
 offenerKreis = syslin('c',real(offenerKreis.num),real(offenerKreis.den))
-//// Plotten der Wurzelortskurve (WOK) von Gui*K
-//clf(2);scf(2);
-//evans(offenerKreis);
-////legend("WOK des offenen Regelkreises",3);
+// Plotten der Wurzelortskurve (WOK) von Gui*K
+clf(2);scf(2);
+evans(offenerKreis,1/45);
+//legend("WOK des offenen Regelkreises",3);
 xgrid();
 
 
@@ -150,20 +150,10 @@ MatrizenscheissvonGmw = tf2ss(Gmw);
 //plotten der Störsprungantwort
 clf(5);scf(5);
 plot2d(t,h2+MatrizenscheissvonGmw(5));
-xtitle("Störsprungantwort","Zeit [s]","Ankerstrom [A]");
+xtitle("Störsprungantwort","Zeit [s]","Winkelgeschindigkeit [rad/s]");
 xgrid();
 
 //Sensitivitätsfunktion
 Si = 1/(1+Gstrich*K2)
 ////Komplimentäre Sensitivitätsfunktion
 Tw = (Gstrich*K2)/(1+Gstrich*K2)
-//
-////plotten der Sensitivitätsfunktion sowie der komplimantären Sensitivitätsfunktion
-//clf(6);scf(6);
-//bode_w_farbe(Si, -3, 3, 'Bodeplot', 'false', 1000, 2);
-////bode_w_farbe(Ti, -3, 3, 'Bodeplot', %f, 1000, 5);
-//legend("Sensitivitätsfunktion","Komplimentäre Sensitivitätsfunktion",3);
-//xgrid();
-//
-////xtitle("Leistungen vor dem Dimmer Werte aus LabView","Phi [°]","Leistung [W]");
-////legend("Sensitivitätsfunktion","Komplimentäre Sensitivitätsfunktion",4);
