@@ -9,18 +9,26 @@
 // Dirk: cd "/media/daten/workspace/PR_Regelungsrechnik_-_Versuch_1a/PR Regelungsrechnik - Versuch 1a/Scilab/"
 
 
-function plot_to_come(title)
-    
-    
-endfunction
-
 // Fehlermeldung bei neudefinition vermeiden
 funcprot(0);
+
+PROCESS_PLOTS = 1;;
+
+x = [1,2]
+y = [2,5]
+
+
+
+globalPlot(x,y,5);
+
+
+
+
 
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
-
+exec("globalPlot.sci", -1);
 
 
 // Konstaten
@@ -124,8 +132,9 @@ t=[0:0.001:0.5];
 h=csim('step',t,GKgeschlossen);
 
 //Plotten der Sprungantwort auf den Geschlossenen Kreis
-clf(4);scf(4);
-plot2d(t,h);
+
+//globalplot (scf & clf ist schon drin)
+globalPlot(t,h);
 xtitle("Sprungantwort des Geschlossene Kreises","Zeit [s]","Ankerstrom [A]");
 xgrid();
 
