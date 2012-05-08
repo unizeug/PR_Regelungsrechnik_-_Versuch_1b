@@ -9,19 +9,27 @@
 // Dirk: cd "/media/daten/workspace/PR_Regelungsrechnik_-_Versuch_1a/PR Regelungsrechnik - Versuch 1a/Scilab/"
 
 
-function plot_to_come(title)
-    
-    
-endfunction
-
-
 // Fehlermeldung bei neudefinition vermeiden
 funcprot(0);
+
+PROCESS_PLOTS = 1;;
+
+x = [1,2]
+y = [2,5]
+
+
+
+globalPlot(x,y,5);
+
+
+
+
+
 
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
-
+exec("superPlot.sci", -1);
 
 
 // Konstaten
@@ -114,8 +122,8 @@ xgrid();
 
 //Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
 clf(3);scf(3);
-bode_w(offenerKreis, 10^(-3), 10^3); 
-legend("Offener Regelkreis",3);
+//bode_w(offenerKreis, 10^(-3), 10^3); 
+//legend("Offener Regelkreis",3);
 xgrid(3);
 
 //// Übertragungsfunktion des geschlossenen Regelkreises
@@ -127,8 +135,9 @@ t=[0:0.001:0.5];
 h=csim('step',t,GKgeschlossen);
 
 //Plotten der Sprungantwort auf den Geschlossenen Kreis
-clf(4);scf(4);
-plot2d(t,h);
+
+//Superplot (scf & clf ist schon drin)
+superPlot(t,h);
 xtitle("Sprungantwort des Geschlossene Kreises","Zeit [s]","Ankerstrom [A]");
 xgrid();
 
