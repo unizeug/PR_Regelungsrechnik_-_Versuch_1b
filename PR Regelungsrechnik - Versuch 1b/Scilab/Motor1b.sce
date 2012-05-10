@@ -81,14 +81,14 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 // Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
 // Übertragungs-Funktion
-//clf(1);scf(1);
-//bode(Gstrich,0.001,300000,'Gstrich');
-//xtitle("Bodeplot von Gstrich");
-//xgrid();
+clf(1);scf(1);
+bode(Gstrich,0.001,300000,'Gstrich');
+xtitle("Bodeplot von Gstrich");
+xgrid();
 
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
-//s0w=pol_Gstrich(2);
-s0w = -10;    //veränderte Nullstelle
+s0w=pol_Gstrich(2);
+//s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
 V2= 1/45   //1/45;
@@ -146,7 +146,7 @@ xgrid();
 //
 //Übertragungsfunktion der Störfunktion bei einer Störung auf den Eingang des 
 //Leistungsverstärkers
-Gmw = Gstrich/(1+Gstrich*K2);
+Gmw = ((1/km)*G2)/(1+Gstrich*K2);
 
 //erstellen der Spungantwort auf die Störung
 t=[0:0.001:1];
