@@ -10,7 +10,7 @@
 
 
 // Fehlermeldung bei neudefinition vermeiden
-funcprot(0);
+funcprot(1);
 
 // Funktion "bode_w" einbinden
 exec("bode_w_farbe.sci", -1);
@@ -83,7 +83,7 @@ s0w=pol_Gstrich(2);
 //s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
-V2= 1/45//1/20;
+V2= 0.08//1/45//1/20;
 Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
@@ -110,10 +110,10 @@ xgrid();
 
 
 //Plotten des Bodediagramms des offenen Regelkreises (Gui*K) in rad/s
-clf(3);scf(3);
-[w, db, phi] = bode_w(offenerKreis, 10^(-6), 10^6); 
-legend("Offener Regelkreis",3);
-xgrid(3);
+//clf(3);scf(3);
+//[w, db, phi] = bode_w(offenerKreis, 10^(-6), 10^6); 
+//legend("Offener Regelkreis",3);
+//xgrid(3);
 
 //// Übertragungsfunktion des geschlossenen Regelkreises
 GKgeschlossen = (Gstrich*K2/(1+Gstrich*K2))
@@ -133,7 +133,9 @@ p98 = 0.98.*ones(t);
 t6=[0.6,0.60001];
 p6=[0,1.4];
 
-globalPlot(t,h,8)
+clf(15);scf(15);
+plot2d(t,h)
+//globalPlot(t,h,8)
 plot2d(t,p02,3);
 plot2d(t,p98,3);
 plot2d(t,p20,3);
@@ -161,7 +163,7 @@ h2=csim('step',t,Gmw);
 MatrizenscheissvonGmw = tf2ss(Gmw);
 
 //plotten der Störsprungantwort
-globalPlot(t,h2+MatrizenscheissvonGmw(5),9);
+//globalPlot(t,h2+MatrizenscheissvonGmw(5),9);
 xtitle("Störsprungantwort","Zeit [s]","Winkelgeschindigkeit [rad/s]");
 xgrid();
 
