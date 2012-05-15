@@ -223,6 +223,7 @@ xrightmargin=-1.5cm
 
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
+        \label{2d}
         Aufgabe:\\
         Bei Sprüngen der Führungsgröße $r_\omega$ von $0$ auf Werte bis zu $180 \frac{rad}{s}$ soll die
         Stellgrößenbeschränkung von $−5V < u < 5V$ nicht verletzt werden. Überprüfen Sie simulativ, ob Ihr Regler
@@ -240,6 +241,7 @@ xrightmargin=-1.5cm
         \end{quote}
         
         \subsubsection{Erstellen der Störübertragungsfunktion}
+        \label{2e}
         Aufgabe:\\
         Berechnen Sie die Störübertragungsfunktion $\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)}$ vom
         Lastmoment $m_L$ auf die Winkelgeschwindigkeit $\omega$. Simulieren Sie die Störsprungantwort. Warum ist das
@@ -270,6 +272,7 @@ xrightmargin=-1.5cm
 		\end{quote}
 		
 		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
+		\label{2f}
 		Aufgabe:\\
 	    Überlegen Sie mit Hilfe der Wurzelortskurve, wie die Nullstelle $s_{0,\omega}$ des Reglers verschoben werden muss, um
 	    das Störverhalten zu verbessern. Wählen Sie $s_{0,\omega}$ und $k_\omega$ neu, sodass alle vorher genannten
@@ -334,6 +337,78 @@ xrightmargin=-1.5cm
 
 \section{Ergebnisse}
 \begin{quote}
+    
+    
+    \subsubsection{Rregler mit guten Störeigenschaften}
+    Implementieren Sie ihre Kaskadenregelung mit innerem und äußerem Regler und der
+    Anti-Windup-Schaltung in Scicos und erstellen Sie mit dem Betreuer das echtzeitfähige
+    Programm zur Motoransteuerung. Verwenden Sie für den äußeren Regler zunächst die
+    Parameter aus Aufgabe \ref{2f}.
+    
+    
+    \begin{quote}
+        
+        \subsubsection{Führungssprungantwort}
+        Nehmen Sie die Führungssprungantwort des Drehzahlregelkreises auf. Schalten Sie
+        dafür den Sollwert der Winkelgeschwindigkeit von $0 \mathrm{\frac{rad}{s}}$ auf $150 \mathrm{\frac{rad}{s}}$
+        Nehmen Sie zusätzlich zu der Regelgröÿe auch die Stellgröße $r_i$ des Regelkreises auf.
+        Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der Simulation des
+        Führungsverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
+        
+        \begin{quote}
+            
+            
+            
+        \end{quote}
+        
+        
+        \subsubsection{Störsprungantwort}
+        Nehmen Sie die Störsprungantwort des Systems auf. Betreiben Sie den Motor bei
+        einer Winkelgeschwindigkeit von $150 \mathrm{\frac{rad}{s}}$ und lösen Sie die Rückhaltevorrichtung
+        der Bremse um ein sprunghaftes Lastmoment zu erhalten. Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße
+        $r_i$ des Regelkreises auf. Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der
+        Simulation des Störverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
+        
+        \begin{quote}
+            
+            
+            
+        \end{quote}
+        
+    \end{quote}
+    
+    
+    \subsection{Rregler mit schlechten Störeigenschaften}
+    Untersuchen Sie nun den Regelkreis mit den zuerst bestimmten Parametern aus Aufgabe
+    \ref{2d}. Nehmen Sie die Störsprungantwort des Systems auf. Wie äuÿert sich das unbefriedigende Störverhalten in der Praxis?
+    Vergleichen Sie das Ergebnis mit der Simulation des Störverhaltens aus der Vorbereitungsaufgabe \ref{2e}!
+    
+    \begin{quote}
+        
+        
+        
+    \end{quote}
+    
+    
+    \subsection{Test der Anti-Windup-Schaltung}
+    Testen Sie ihre Anti-Windup-Schaltung mit den Parametern aus Aufgabe \ref{2f}. Betreiben
+    Sie den Motor bei einer Winkelgeschwindigkeit von$150 \mathrm{\frac{rad}{s}}$
+    und halten Sie die Scheibe
+    sehr kurz fest um sie danach sofort wieder freizugeben. Wiederholen Sie den Versuch mit
+    deaktivierter Anti-Windup-Schaltung! Nehmen Sie neben der Winkelgeschwindigkeit
+    und dem Ankerstrom die Stellgrößen vor und nach der Beschränkung auf. Beschreiben
+    und vergleichen Sie das Regelkreisverhalten mit und ohne Anti-Windup-Schaltung!
+    
+    \begin{quote}
+        
+        
+        
+    \end{quote}
+
+
+    
+    
+    
     
 \end{quote}
 
