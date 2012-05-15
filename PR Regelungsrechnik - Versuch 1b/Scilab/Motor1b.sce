@@ -17,7 +17,7 @@ exec("bode_w_farbe.sci", -1);
 exec("bode_w.sci", -1);
 exec("globalPlot.sci", -1);
 
-PROCESS_PLOTS = 1;
+PROCESS_PLOTS = 0;
 
 // Konstaten
 u=1
@@ -78,24 +78,27 @@ pol_Gstrich=roots(Gstrich.den);
 Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 
-
-// Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
-// Übertragungs-Funktion
-clf(1);scf(1);
-bode(Gstrich,0.001,300000,'Gstrich');
-xtitle("Bodeplot von Gstrich");
-xgrid();
-
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
 s0w=pol_Gstrich(2);
 //s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
-V2= 1/45   //1/45;
+V2= 1/45//1/20;
 Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K2 = Kw*(((s-s0w)/s));
+K2 = syslin('c',real(K2.num),real(K2.den));
+
+// Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
+// Übertragungs-Funktion
+clf(1);scf(1);
+bode_w_farbe(Gstrich, -6, 6, 'Bodeplot K2', %f, 1000, 3);
+bode_w_farbe(K2, -6, 6, 'Bodeplot K2', %f, 1000, 5);
+bode_w_farbe(Gstrich*K2, -6, 6, 'Bodeplot K2', %f, 1000, 2);
+xtitle("Bodeplot von Gstrich");
+legend(["Gstrich","K2","Gstrich*K2"],3);
+xgrid();
 
 offenerKreis_2 = Gstrich*K2;
 offenerKreis = syslin('c',real(offenerKreis_2.num),real(offenerKreis_2.den))

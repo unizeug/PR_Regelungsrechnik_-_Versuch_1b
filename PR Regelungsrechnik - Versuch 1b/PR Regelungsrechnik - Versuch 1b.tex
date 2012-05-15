@@ -179,11 +179,7 @@ xrightmargin=-1.5cm
             ``Überschwingweite'': Bei der Überschwingweite handelt es sich um die maximale Abweichung der Reglegröße vom
             Sollwert, $\Delta y = max(y) - y_{soll}$, nach dem die Relgröße die Sollgröße überschritten hat.       
             \cite{Ueberschwingweite}
-            
-            
-            
-            
-            
+  
             
             \vspace{2em}
             Phasenreserve und Überschwingweite hängen folgendermaßen zusammen:\\
@@ -217,6 +213,27 @@ xrightmargin=-1.5cm
 		      Amplitudenfrequenzgang die $0dB$ Achse schneidet.\\
 		      
 		\end{quote}
+		
+		Zum Reglerentwurf:\vspace{1em}
+		
+		Das Bode-Diagramm des Reglers $K_2$ mit einer Verstärkung von $1$ und das resultierende Diagramm für $G_\omega^{'}
+		K_2$ sehen folgendermaßen aus:
+		\begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/K2GstrichVersion1verstaerkung1}
+                \caption{Bode-Diagramm Gstrich, K2 und Gstrich K2}
+        \end{figure}
+    
+        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{°}$ an. Aus dem Bodediagramm
+        wird ersichtlich, dass die der Regler $K_\omega$ dazu eine Verstärkung von ca. $-20dB$.\\
+        Mit diesen Einstellungen ergibt sich folgende Sprungantwort:
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Sprungantwortlangsam}
+                \caption{Sprungantwort}
+        \end{figure}
+    
+        
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
         Aufgabe:\\
@@ -226,6 +243,7 @@ xrightmargin=-1.5cm
         Wie lautet die Übertragungsfunktion $\overline{T}_\omega$ des bis hierhin entworfenen geschlossenen
         Regelkreises?
         \begin{quote}
+            
             \begin{equation*}
             	\begin{split}
             		\overline{T}_\omega &= \frac{G_\omega^{'} K_\omega}{1 + G_\omega^{'} K_\omega}\\
@@ -240,11 +258,12 @@ xrightmargin=-1.5cm
         Berechnen Sie die Störübertragungsfunktion $\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)}$ vom
         Lastmoment $m_L$ auf die Winkelgeschwindigkeit $\omega$. Simulieren Sie die Störsprungantwort. Warum ist das
         Störverhalten des entworfenen Regelkreises nicht brauchbar? Was fällt Ihnen auf, wenn Sie die Pole von
-        $\overline{T}_\omega$ und $\overline{G}_\omega$ vergleichen?
+        $\overline{T}_\omega$ und $\overline{G}_{m\omega}$ vergleichen?
 		\begin{quote}
 			\begin{equation*}
             	\begin{split}
-            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{G_\omega^{'}}{1+ G_\omega^{'} T_\omega}
+            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{\frac{1}{km}G_{i\omega}}{1+ G_\omega^{'}
+            		T_\omega}
             	\end{split}
             \end{equation*}
             
@@ -260,8 +279,25 @@ xrightmargin=-1.5cm
             nach über $150$s hat der Regler es nicht geschafft die Störung auszuregeln.\vspace{1em}
              
             Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_\omega$ fällt es auf, dass sie
-            nicht gleich viele haben. $\overline{T}_\omega$ hat 6 Polstellen während $\overline{G}_\omega$ 5 Polstellen hat.
-            
+            nicht gleich viele haben.\\
+            $\overline{T}_\omega$ hat die Polstellen:\\
+            \begin{equation*}
+            	\begin{split}
+            		pol \overline{T}_\omega (1) &= - 202.22547\\
+                    pol \overline{T}_\omega (2) &= - 101.11274 + 18.552561i\\
+                    pol \overline{T}_\omega (3) &= - 101.11274 - 18.552561i\\            		
+                    pol \overline{T}_\omega (4) &= - 0.0178492\\
+            	\end{split}
+            \end{equation*}
+            Während $\overline{G}_{m\omega}$ folgende Polstellen besitzt:
+            \begin{equation*}
+            	\begin{split}
+                    pol \overline{G}_{m\omega} (2) &= - 101.11274 + 18.552561i\\
+                    pol \overline{G}_{m\omega} (3) &= - 101.11274 - 18.552561i\\                   
+                    pol \overline{G}_{m\omega} (4) &= - 0.0178492\\            		
+            	\end{split}
+            \end{equation*}
+                        
 		\end{quote}
 		
 		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
