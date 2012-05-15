@@ -65,7 +65,7 @@ nul_G2=roots(G2.num)
 pol_G2=roots(G2.den)
 
 // komplimentäre Übertragungsfunktion der Stromregelung
-//Ti = syslin('c', 202.22547, 202.22547 + s);
+Ti = syslin('c', 202.22547, 202.22547 + s);
 
 // Erstellen der Übertragungsfunktion G'(w)
 Gstrich = Ti*G2;
@@ -79,11 +79,11 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 
 
 // Die Nullstelle des Reglers wird auf die Polstelle der Stecke gelegt
-s0w=pol_Gstrich(2);
-//s0w = -10;    //veränderte Nullstelle
+//s0w=pol_Gstrich(2);
+s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
-V2= 0.08//1/45//1/20;
+V2= 1/45//1/20;
 Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
