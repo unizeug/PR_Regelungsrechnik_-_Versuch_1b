@@ -464,7 +464,7 @@ xrightmargin=-1.5cm
 \begin{quote}
     
     
-    \subsubsection{Regler mit guten Störeigenschaften}
+    \subsection{Regler mit guten Störeigenschaften}
     Implementieren Sie ihre Kaskadenregelung mit innerem und äußerem Regler und der
     Anti-Windup-Schaltung in Scicos und erstellen Sie mit dem Betreuer das echtzeitfähige
     Programm zur Motoransteuerung. Verwenden Sie für den äußeren Regler zunächst die
@@ -537,8 +537,60 @@ xrightmargin=-1.5cm
     
     \begin{quote}
         
+        Bei diesem Versuch haben wir den laufenden Motor nicht nur durch eine Last in seiner Umdrehung gestört sondern
+        ihn durch festhalten der Scheibe kurz komplett angehalten. Dadurch haben wir den Regler gezwungen so stark auf
+        diese Störung zu reagieren, dass er mit seiner inneren Stellgröße $u$ in die Begrenzung geht. Diesen Versuch
+        haben wir sowohl mit eingeschalteter Wind-up Schaltung durchgeführt als auch mit ausgeschalteter Wind-up
+        Schaltung.\\
         
+        Die Messergebniss von diesen zwei Versuchen sehen Folgendermaßen aus.
         
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
+            clip]{./Bilder/windup_sprungantwort_sollstrom}    
+            \caption{Sprungantwort Sollstrom}
+        \end{figure}
+        
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
+            clip]{./Bilder/windup_sprungantwort_Spannung}    
+            \caption{Sprungantwort Spannung}
+        \end{figure}        
+        
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
+            clip]{./Bilder/windup_sprungantwort_Geschwindigkeit}    
+            \caption{Sprungantwort Geschwindigkeit}
+        \end{figure}
+
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
+            clip]{./Bilder/windup_sprungantwort_Strom}    
+            \caption{Sprungantwort Strom}
+        \end{figure}    
+        
+        In der Grafik die die Drehgeschwindigkeit darstellt sieht man klar, wann die Schwungscheibe von ihrer
+        Drehgeschwindigkeit von $150 \frac{rad}{s}$ auf $0\frac{rad}{s}$ abgebremst wird. Als reaktion darauf versucht
+        der Regler den Motor anzuregen. Dazu steigt der Sollstrom an, weshalb wiederum die Spannung sprungartig
+        ansteigt. Diese wiederum gerät dabei in die Begrenzung.\\
+        Im Falle der aktivierten anti-Wind-up Schaltung bremst diese sofort die beiden Intregratoren der beiden
+        Regelgrößen. Dieses verhindert, dass die beiden Regler mit ihren Reglgrößen über ihr Ziel hinausschießen.\\
+        Dieser Effekt lässt sich sehr gut an den Grünen Linien in der Sprungantwort der Spannung sowie der
+        Sprunganwort des Sollstroms erkennen.\\
+        Auch an der Drehgeschwindigkeit lässt sich dieses abbremsen erkennen, da die Grüne Linie langsamer aus der
+        Störung rauskommt als die Blaue. Dafür schafft sie es jedoch sobald die gewünschte Drehzahl erreicht ist die
+        Beschleunigung komplett abzubremsen und hat somit die Störung ausgeregelt.\vspace{1em}
+        
+        Im Gegensatz dazu versucht der Regler ohne anti-Windup die Störung auszugleichen als ob es keine
+        Berenzung gebe. Das wiederum hat zur folge, dass der innere Regler nicht den erwarteten Ankerstrom erzeugt,
+        weshalb der Regler selber den Integrator hochzählt um weiter gegenzusteuern. Dadurch addiert sich der
+        Integrator so hoch, dass selbst wenn der gewünschte Ankerstrom irgendwann erreicht ist, der Regler eine
+        falsche Stellgröße auf die Strecke gibt. Dieses lässt sich gut in der Sprungantwort der Spanngung sehen. 
+                
     \end{quote}
 
 

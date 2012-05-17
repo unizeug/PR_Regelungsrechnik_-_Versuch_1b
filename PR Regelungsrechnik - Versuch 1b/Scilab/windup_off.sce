@@ -15,7 +15,7 @@ exec("globalPlot.sci", -1);
 errcatch(10000,'continue','nomessage');
 
 
-PROCESS_PLOTS = 0;
+PROCESS_PLOTS = 1;
 
 
 //t=s1(:,1); Zeit
