@@ -83,28 +83,32 @@ Gstrich = syslin('c',real(Gstrich.num),real(Gstrich.den));
 s0w = -10;    //veränderte Nullstelle
 
 // verstärkung und Proportionalteil des Reglers
-V2= 1/45//1/20;
+V2= 1/45//1/10;
 Kw = V2;
 
 // die Übertragungsfunktion des Pi-Reglers, der mit einem PT1-Glied verkettet ist
 K2 = Kw*(((s-s0w)/s));
 K2 = syslin('c',real(K2.num),real(K2.den));
+K3 = 1*(((s-s0w)/s));
+K3 = syslin('c',real(K3.num),real(K3.den));
+
+
 
 // Bodeplot der Originalstrecken Übertragungsfunktion sowie der verkürzten 
 // Übertragungs-Funktion
 clf(1);scf(1);
-bode_w_farbe(Gstrich, -6, 6, 'Bodeplot K2', %f, 1000, 3);
-bode_w_farbe(K2, -6, 6, 'Bodeplot K2', %f, 1000, 5);
+//bode_w_farbe(Gstrich, -6, 6, 'Bodeplot K2', %f, 1000, 3);
+//bode_w_farbe(K2, -6, 6, 'Bodeplot K2', %f, 1000, 5);
+bode_w_farbe(Gstrich*K3, -6, 6, 'Bodeplot K2', %f, 1000, 3);
 bode_w_farbe(Gstrich*K2, -6, 6, 'Bodeplot K2', %f, 1000, 2);
-xtitle("Bodeplot von Gstrich");
-legend(["Gstrich","K2","Gstrich*K2"],3);
+legend(["Geschlossener Kreis Verstärkung 1","Geschlossener Kreis Verstärkung 1/10"],3);
 xgrid();
 
 offenerKreis_2 = Gstrich*K2;
 offenerKreis = syslin('c',real(offenerKreis_2.num),real(offenerKreis_2.den))
 // Plotten der Wurzelortskurve (WOK) von Gui*K
-clf(2);scf(2);
-evans(offenerKreis,100);
+//clf(2);scf(2);
+//evans(offenerKreis,100);
 //legend("WOK des offenen Regelkreises",3);
 xgrid();
 
@@ -113,7 +117,7 @@ xgrid();
 //clf(3);scf(3);
 //[w, db, phi] = bode_w(offenerKreis, 10^(-6), 10^6); 
 //legend("Offener Regelkreis",3);
-//xgrid(3);
+xgrid(3);
 
 //// Übertragungsfunktion des geschlossenen Regelkreises
 GKgeschlossen = (Gstrich*K2/(1+Gstrich*K2))
@@ -158,7 +162,7 @@ t=[0:0.001:1];
 h2=csim('step',t,Gmw);
 
 
-//errechnen des Faktors D von Gdu um später beim plotten den Fehler ausgleichen
+//errechnen des Faktors D von Gmw um später beim plotten den Fehler ausgleichen
 //zu können
 MatrizenscheissvonGmw = tf2ss(Gmw);
 
