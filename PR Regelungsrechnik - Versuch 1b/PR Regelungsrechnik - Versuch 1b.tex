@@ -234,9 +234,16 @@ xrightmargin=-1.5cm
                 \caption{Bode-Diagramm Gstrich, K2 und Gstrich K2}
         \end{figure}
     
-        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{°}$ an. Aus dem Bodediagramm
-        wird ersichtlich, dass die der Regler $K_\omega$ dazu eine Verstärkung von ca. $-20dB$.\\
-        Mit diesen Einstellungen ergibt sich folgende Sprungantwort:
+        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{\circ}$ an. Aus dem Bodediagramm
+        wird ersichtlich, dass der Regler $K_\omega$ dazu eine Verstärkung von ca. $-20dB$ benötigt.\\
+        Diese Verstärkung hat folgende Auswirkung auf den Bodeplot:
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/BodeGschlossenverstaerkt}
+                \caption{Bodeplot geschlossener Kreis}
+        \end{figure}
+    
+        Mit dieser Verstärkung ergibt sich folgende Sprungantwort:
         \begin{figure}[H]
         \centering
             \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Sprungantwortlangsam}
@@ -257,9 +264,8 @@ xrightmargin=-1.5cm
             
             \begin{equation*}
             	\begin{split}
-            		\overline{T}_\omega &= \frac{G_\omega^{'} K_\omega}{1 + G_\omega^{'} K_\omega}\\
-            		&= \frac{1531.9576s +  171663.42s^2 +  4809358.2s^3 +  23777.961s^4}{1531.9576s +  171676.45s^2 + 
-            		4810818.3s^3 +  64687.541s^4 +  404.48664s^5 +  1s^6}
+            		\overline{T}_\omega &= \frac{G_\omega^{'} K_\omega}{1 + G_\omega^{'} K_\omega}\\ \\
+            		&= \frac{47555.923}{47555.923 + 202.22547 s + s^2}
             	\end{split}
             \end{equation*}
         \end{quote}
@@ -274,8 +280,9 @@ xrightmargin=-1.5cm
 		\begin{quote}
 			\begin{equation*}
             	\begin{split}
-            		\overline{G}_{m\omega} (s) = \frac{\Omega(s)}{M_L (s)} = \frac{\frac{1}{km}G_{i\omega}}{1+ G_\omega^{'}
-            		K_\omega}
+            		\overline{G}_{m\omega} (s) &= \frac{\Omega(s)}{M_L (s)} = \frac{\frac{1}{km}G_{i\omega}}{1+ G_\omega^{'}
+            		K_\omega}\\ \\
+            		&= \frac{9023894.2s + 44622.936s^2}{848.83396 + 47559.532s + 202.24332s^2 + s^3}
             	\end{split}
             \end{equation*}
             
@@ -290,25 +297,75 @@ xrightmargin=-1.5cm
             Es fällt auf, dass die Störsprungantwort extrem langsam, und daher vermultich nicht zu gebrauchen ist. Selbst
             nach über \SI{150}{s} hat der Regler es, in der Simulation, nicht geschafft die Störung auszuregeln.\vspace{1em}
              
-            Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_\omega$ fällt es auf, dass sie
-            nicht gleich viele haben.\\
+            Ob eine solch langsame Störsprungantwort zu gebrauchen ist hängt selbstverständlich von dem Problem ab für
+            das der Regler entworfen werden soll. Da aber unsere Führungssprungantwort eine Ausregelzeit von $0,6s$
+            aufweisen sollte und unsere Störsprungantwort eine Ausregelzeit größer als $150 s$ aufweist erscheint
+            dieser Regler so nicht praktikabel.\vspace{1em}
+             
+            Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_{m\omega}$ fällt es auf, dass
+            $\overline{G}_{m\omega}$ neben den zwei Polstellen von $\overline{T}_{m\omega}$ eine Polstell zusätzlich hat.\\
+            
             $\overline{T}_\omega$ hat die Polstellen:\\
             \begin{equation*}
             	\begin{split}
-            		pol \overline{T}_\omega (1) &= - 202.22547\\
-                    pol \overline{T}_\omega (2) &= - 101.11274 + 18.552561i\\
-                    pol \overline{T}_\omega (3) &= - 101.11274 - 18.552561i\\            		
-                    pol \overline{T}_\omega (4) &= - 0.0178492\\
+                    pol \overline{T}_\omega (1) &= - 101.11273 + 193.21526i\\
+                    pol \overline{T}_\omega (2) &= - 101.11273 - 193.21526i\\            		
             	\end{split}
-            \end{equation*}
-            Während $\overline{G}_{m\omega}$ folgende Polstellen besitzt:
+            \end{equation*}\\
+            
+             Während $\overline{G}_{m\omega}$ folgende Polstellen besitzt:\\
+             
             \begin{equation*}
             	\begin{split}
-                    pol \overline{G}_{m\omega} (2) &= - 101.11274 + 18.552561i\\
-                    pol \overline{G}_{m\omega} (3) &= - 101.11274 - 18.552561i\\                   
-                    pol \overline{G}_{m\omega} (4) &= - 0.0178492\\            		
+                    pol \overline{G}_{m\omega} (1) &= - 101.11273 + 193.21526i\\
+                    pol \overline{G}_{m\omega} (2) &= - 101.11273 + 193.21526i\\                   
+                    pol \overline{G}_{m\omega} (3) &= - 0.0178492\\            		
             	\end{split}
             \end{equation*}
+            
+            Diese eine zusätzliche Postelle von $\overline{G}_{m\omega}$ ist die langsame Polstelle der Strecke
+            $G_\omega^{'}$, die wir bei dieser Reglerentwicklung mit der Nullstelle des Reglers eliminieren wollten.\\
+            In der Übertragungsfunktion des Geschlossenen Kreises kürzt sich die Nullstelle des Reglers mit der
+            Postelle der Strecke. Des halb taucht diese Polstelle nicht mehr als Polstelle von $\overline{T}_\omega$
+            auf. Bei der Störübertragungsfunktion $\overline{G}_{m\omega}$ hingegen kürzt sich diese Polstelle nicht
+            raus und beeinflusst die Störsprungantwort sehr negativ.\\
+            
+            
+            Im folgenden wird allgemein gezeigt, wie sich bei der komplimentären Sensitivitätsfunktion Pole der Strecke
+            gegen Nullstellen des Reglers kürzen jedoch bei dieser Form der Sörübertragungsfunktion erhalten bleiben.\\
+            Der Regler $K$ und die Strecke $G$ seinen folgendermaßen dargestellt. Die Pole der Strecke in $N_G$ werden
+            durch gleich viele Nullstellen im Regler in $Z_K$ kompensiert.
+            \begin{equation*}
+            	\begin{split}
+            		K &= \frac{Z_K}{N_K}\\
+            		G &= \frac{Z_G}{N_G}\\
+            	\end{split}
+            \end{equation*}
+            
+            Für die sensitivitätsfunktion heißt dass:
+            
+            \begin{equation*}
+            	\begin{split}
+                    T &= \frac{GK}{1+GK} = \frac{\frac{Z_K}{N_K} \frac{Z_G}{N_G}}{1 + \frac{Z_K}{N_K}
+                    \frac{Z_G}{N_G}}\\
+                    &= \frac{Z_G Z_K}{N_G N_K + Z_G Z_K}\\
+                    &= \frac{Z_G}{N_K + Z_G}
+            	\end{split}
+            \end{equation*}
+                        
+            Die Pole und Nullstellen, die in $N_G$ und $Z_K$ vorhanden sind, lassen sich gegenseitig kürzen.\\
+            
+            Für die Störübertragungsfunktion hingengen ergibt:
+            \begin{equation*}
+            	\begin{split}
+            		G_{m\omega} &= \frac{G}{1 + GK} = \frac{\frac{Z_G}{N_G}}{1 + \frac{Z_K}{N_K}\frac{Z_G}{N_G}}\\
+            		&= \frac{Z_G N_K}{N_G N_K + Z_G Z_K}
+            	\end{split}
+            \end{equation*}
+            
+            In diesem Fall fehlt die Nullstellen des Reglers im Zähler der Störübertragungsfunktion. Daher bleiben die
+            Polstellen in $G_{m\omega}$ erhalten.
+            
                         
 		\end{quote}
 		
@@ -323,8 +380,8 @@ xrightmargin=-1.5cm
 		\vspace{1em}
 			Nun verschieben wir die Nullstelle weiter in den Negativen bereich, wodurch das neue $T_\omega$ und das
 			neue $G_{m\omega}$ gleich viele Pole haben. Das liegt daran, dass bei $T_\omega$ kein Pol mehr eliminiert wird.\\
-			Dass wir die Nullstelle $s_{0\omega}$ auf die $-12$ gelegt haben und mit einer Verstärkung von $\frac{1}{45}$
-			arbeiten, hat positive Auswirkungen auf die Störübertragungsfunktion.
+			Mit der Nullstelle $s_{0\omega}$ auf der $-10$ und mit einer Verstärkung
+			von $\frac{1}{45}$ folgt folgende Störsprungantwort.
 			
 			\begin{figure}[H]
             \centering
@@ -332,6 +389,9 @@ xrightmargin=-1.5cm
                     \caption{schnelle Störsprungantwort}
                     \label{fig:Stoersprungantwortschnell}
             \end{figure}
+            
+            Diese Störsprungantwort erhat eien Ausregelzeit von $0,5s$ und reagiert damit um Größenordnungen schneller
+            als unsere erste Reglerentwicklung.\vspace{1em}
             
             Auch die Sprungantwort erfüllt mit diesen Werten alle Bedingungen:
             \begin{figure}[H]
@@ -342,13 +402,37 @@ xrightmargin=-1.5cm
             \end{figure}
     
     
-            Die aus diesen Voraussetzungen entstehenden Übertragungsfunktionen $T_\omega$ und $G_{m\omega}$ lauten:
+            Die aus diesen Voraussetzungen entstehenden Übertragungsfunktionen $T_\omega$ und $G_{m\omega}$ lauten:\\
+            
             \begin{equation*}
             	\begin{split}
-            		T_\omega = \frac{105679.83 + 10567.983s}{105679.83 + 10571.592s + 202.24332s^2 + s^3}\\
-            		G_{m\omega} = \frac{475559.23s}{105679.83 + 10571.592s + 202.24332s^2 + s^3}
+            		T_\omega = \frac{105679.83 + 10567.983s}{105679.83 + 10571.592s + 202.24332s^2 + s^3}\\ \\
+            		G_{m\omega} = \frac{9023894.2s + 44622.936s^2}{105679.83 + 10571.592s + 202.24332s^2 + s^3}
             	\end{split}
+            \end{equation*}\\
+            
+            An dem selben Nenner von $T_\omega$ und $G_{m\omega}$ lässt sich schon erkennen, dass die beiden
+            Übertragungsfunktionen die Selben Polstellen besitzen.\\
+            
+            $T_\omega$ hat die Polstellen:\\
+            \begin{equation*}
+                \begin{split}
+                    pol T_\omega (1) &= - 123.67194\\
+                    pol T_\omega (2) &= - 65.531604\\
+                    pol T_\omega (3) &= - 13.039776\\                   
+                \end{split}
+            \end{equation*}\\
+            
+            Während $G_{m\omega}$ folgende Polstellen besitzt:\\
+            
+            \begin{equation*}
+                \begin{split}
+                    pol G_{m\omega} (1) &= - 123.67194\\
+                    pol G_{m\omega} (2) &= - 65.531604\\                
+                    pol G_{m\omega} (3) &= - 13.039776\\              
+                \end{split}
             \end{equation*}
+            
 		\end{quote}
 		
 	\end{quote}
@@ -392,7 +476,7 @@ xrightmargin=-1.5cm
         \subsubsection{Führungssprungantwort}
         Nehmen Sie die Führungssprungantwort des Drehzahlregelkreises auf. Schalten Sie
         dafür den Sollwert der Winkelgeschwindigkeit von $0 \mathrm{\frac{rad}{s}}$ auf $150 \mathrm{\frac{rad}{s}}$
-        Nehmen Sie zusätzlich zu der Regelgröÿe auch die Stellgröße $r_i$ des Regelkreises auf.
+        Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße $r_i$ des Regelkreises auf.
         Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der Simulation des
         Führungsverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
         
@@ -421,11 +505,19 @@ xrightmargin=-1.5cm
     
     \subsection{Regler mit schlechten Störeigenschaften}
     Untersuchen Sie nun den Regelkreis mit den zuerst bestimmten Parametern aus Aufgabe
-    \ref{2d}. Nehmen Sie die Störsprungantwort des Systems auf. Wie äuÿert sich das unbefriedigende Störverhalten in der Praxis?
+    \ref{2d}. Nehmen Sie die Störsprungantwort des Systems auf. Wie äußert sich das unbefriedigende Störverhalten in der Praxis?
     Vergleichen Sie das Ergebnis mit der Simulation des Störverhaltens aus der Vorbereitungsaufgabe \ref{2e}!
     
     \begin{quote}
         
+        Dieser Versuchsteil hat leider nicht den gewünschten und erwarteten Erfolg gebracht. Erwartet hätten wir einen
+        ähnlich schnelle Führungssprungantwort wie mit dem guten Regler jedoch eine sehr viel langsamere
+        Störsprungantwort. Der Versuch selbst hat jedoch schon eine sehr langsame Führungssprungantwort ergeben mit
+        einer Ausregelzeit weit größer als $20 s$. Laut unserer Simulation hätte sich jedoch eine Ausregelzeit von unter
+        $0.1 s$ einstellen sollen. Den Fehler für diese Abweichung konnten wir nicht identifizieren.\vspace{1em}
+        
+        Merkwürdig war, dass ein falsches Vorzeichen in der Rückführung des PT1-Gliedes in unserer Scicos Datei keine
+        Auswirkung auf die Messergebnisse hatte. 
         
         
     \end{quote}
