@@ -5,8 +5,8 @@
 // Frequenzkennlinienverfahren und Simulation
 // ############################################################################
 
-// Boris: cd "/Users/borishenckell/Documents/eclipse workspace/PR_Regelungsrtechnik_-_Versuch_1a/PR Regelungsrechnik - Versuch 1a"
-// Dirk: cd "/media/daten/workspace/PR_Regelungsrechnik_-_Versuch_1a/PR Regelungsrechnik - Versuch 1a/Scilab/"
+// Boris: cd "/Users/borishenckell/Documents/eclipse workspace/PR_Regelungsrtechnik_-_Versuch_1b/PR Regelungsrechnik - Versuch 1b"
+// Dirk: cd "/media/daten/workspace/PR_Regelungsrechnik_-_Versuch_1b/PR Regelungsrechnik - Versuch 1b/Scilab/"
 
 
 // Fehlermeldung bei neudefinition vermeiden

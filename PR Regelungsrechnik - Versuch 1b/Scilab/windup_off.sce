@@ -15,7 +15,7 @@ exec("globalPlot.sci", -1);
 errcatch(10000,'continue','nomessage');
 
 
-PROCESS_PLOTS = 0;
+PROCESS_PLOTS = 1;
 
 
 //t=s1(:,1); Zeit
@@ -89,10 +89,10 @@ clf(5);
 I_soll3 = i_soll3(stoe_anfang_3:stoe_ende_3);
 I_soll4 = i_soll4(stoe_anfang_4:stoe_ende_4);
 
-globalPlot(T3,I_soll3,2)
 globalPlot(T3,I_soll4,3)
+globalPlot(T3,I_soll3,2)
 xtitle("Störsprungantwort des Sollstroms","Zeit [s]","Strom [A]");
-legend("ohne anti-Windup","mit anti-Windup",1);
+legend("mit anti-Windup","ohne anti-Windup",1);
 
 
 
@@ -105,10 +105,11 @@ clf(6);
 I3 = i3(stoe_anfang_3:stoe_ende_3);
 I4 = i4(stoe_anfang_4:stoe_ende_4);
 
-globalPlot(T3,I3,2)
+
 globalPlot(T3,I4,3)
+globalPlot(T3,I3,2)
 xtitle("Störsprungantwort des Stroms","Zeit [s]","Strom [A]");
-legend("ohne anti-Windup","mit anti-Windup",1);
+legend("mit anti-Windup","ohne anti-Windup",1);
 
 
 
@@ -127,10 +128,10 @@ W_4 = w4;
 W3 = W_3(stoe_anfang_3:stoe_ende_3);
 W4 = W_4(stoe_anfang_4:stoe_ende_4);
 
-globalPlot(T3,W3,2,1)
-globalPlot(T3,W4,3,1)
+globalPlot(T3,W4,3)
+globalPlot(T3,W3,2)
 xtitle("Störsprungantwort der Geschwindigkeit","Zeit [s]","Winkelgeschwindigkeit [rad/s]");
-legend("ohne anti-Windup","mit anti-Windup",4);
+legend("mit anti-Windup","ohne anti-Windup",4);
 
 
 
@@ -142,28 +143,11 @@ clf(9);
 U3 = u3(stoe_anfang_3:stoe_ende_3);
 U4 = u4(stoe_anfang_4:stoe_ende_4);
 
-globalPlot(T3,U3,2)
 globalPlot(T3,U4,3)
+globalPlot(T3,U3,2)
+
 xtitle("Störsprungantwort der Spannung","Zeit [s]","Spannung [V]");
-legend("ohne anti-Windup","mit anti-Windup",4);
-
-
-
-
-
-// ## Simulation ##
-scf(10);
-clf(10);
-
-
-h1=csim('step',T3,Gmw);
-h1 = (h1/max(h1))*(min(w3)+70)+150;
-
-globalPlot(T3,h1,10);
-xgrid();
-xtitle("Störsprungantwort","Zeit [s]","Winkelgeschwindigkeit [rad/s]");
-legend("gemessen","simuliert",1);
-
+legend("mit anti-Windup","ohne anti-Windup",4);
 
 
 
