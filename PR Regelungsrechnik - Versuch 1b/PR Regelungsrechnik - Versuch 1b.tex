@@ -234,7 +234,7 @@ xrightmargin=-1.5cm
                 \caption{Bode-Diagramm Gstrich, K2 und Gstrich K2}
         \end{figure}
     
-        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{°}$ an. Aus dem Bodediagramm
+        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{\circ}$ an. Aus dem Bodediagramm
         wird ersichtlich, dass die der Regler $K_\omega$ dazu eine Verstärkung von ca. $-20dB$.\\
         Mit diesen Einstellungen ergibt sich folgende Sprungantwort:
         \begin{figure}[H]
@@ -392,7 +392,7 @@ xrightmargin=-1.5cm
         \subsubsection{Führungssprungantwort}
         Nehmen Sie die Führungssprungantwort des Drehzahlregelkreises auf. Schalten Sie
         dafür den Sollwert der Winkelgeschwindigkeit von $0 \mathrm{\frac{rad}{s}}$ auf $150 \mathrm{\frac{rad}{s}}$
-        Nehmen Sie zusätzlich zu der Regelgröÿe auch die Stellgröße $r_i$ des Regelkreises auf.
+        Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße $r_i$ des Regelkreises auf.
         Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der Simulation des
         Führungsverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
         
@@ -421,11 +421,19 @@ xrightmargin=-1.5cm
     
     \subsection{Regler mit schlechten Störeigenschaften}
     Untersuchen Sie nun den Regelkreis mit den zuerst bestimmten Parametern aus Aufgabe
-    \ref{2d}. Nehmen Sie die Störsprungantwort des Systems auf. Wie äuÿert sich das unbefriedigende Störverhalten in der Praxis?
+    \ref{2d}. Nehmen Sie die Störsprungantwort des Systems auf. Wie äußert sich das unbefriedigende Störverhalten in der Praxis?
     Vergleichen Sie das Ergebnis mit der Simulation des Störverhaltens aus der Vorbereitungsaufgabe \ref{2e}!
     
     \begin{quote}
         
+        Dieser Versuchsteil hat leider nicht den gewünschten und erwarteten Erfolg gebracht. Erwartet hätten wir einen
+        ähnlich schnelle Führungssprungantwort wie mit dem guten Regler jedoch eine sehr viel langsamere
+        Störsprungantwort. Der Versuch selbst hat jedoch schon eine sehr langsame Führungssprungantwort ergeben mit
+        einer Ausregelzeit weit größer als $20 s$. Laut unserer Simulation hätte sich jedoch eine Ausregelzeit von unter
+        $0.1 s$ einstellen sollen. Den Fehler für diese Abweichung konnten wir nicht identifizieren.\vspace{1em}
+        
+        Merkwürdig war, dass ein falsches Vorzeichen in der Rückführung des PT1-Gliedes in unserer Scicos Datei keine
+        Auswirkung auf die Messergebnisse hatte. 
         
         
     \end{quote}
