@@ -234,32 +234,31 @@ xrightmargin=-1.5cm
                 \caption{Bode-Diagramm Gstrich, K2 und Gstrich K2}
         \end{figure}
     
-        Um unsere Anforderungen zu erfüllen streben wir eine Phasenreserve von ca. $60^{\circ}$ an. Aus dem Bodediagramm
+        Um unsere Anforderungen zu erfüllen, streben wir eine Phasenreserve von ca. $60^{\circ}$ an. Aus dem Bodediagramm
         wird ersichtlich, dass der Regler $K_\omega$ dazu eine Verstärkung von ca. $-20dB$ benötigt.\\
-        Diese Verstärkung hat folgende Auswirkung auf den Bodeplot:
+        Die Änderung der Verstärkung hat folgende Auswirkung auf den Bodeplot:
         \begin{figure}[H]
         \centering
             \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/BodeGschlossenverstaerkt}
                 \caption{Bodeplot geschlossener Kreis}
         \end{figure}
-    
+        
         Mit dieser Verstärkung ergibt sich folgende Sprungantwort:
         \begin{figure}[H]
         \centering
             \includegraphics[scale=0.7, trim = 0cm 0cm 0cm 0cm, clip]{./Bilder/Sprungantwortlangsam}
                 \caption{Sprungantwort}
         \end{figure}
-    
+        
         
         
         \subsubsection{Erstellen der Führungsübertragungsfunktion}
         \label{2d}
         Aufgabe:\\
-        Bei Sprüngen der Führungsgröße $r_\omega$ von $0$ auf Werte bis zu $180 \frac{rad}{s}$ soll die
-        Stellgrößenbeschränkung von $−5V < u < 5V$ nicht verletzt werden. Überprüfen Sie simulativ, ob Ihr Regler
-        diese Forderung erfüllt. Falls nicht, korrigieren Sie ihre Reglerparameter, sodass die Forderung erfüllt wird.
-        Wie lautet die Übertragungsfunktion $\overline{T}_\omega$ des bis hierhin entworfenen geschlossenen
-        Regelkreises?
+        Bei Sprüngen der Führungsgröße $r_\omega$ von $0$ auf Werte bis zu $180 \frac{rad}{s}$ soll die Stellgrößenbeschränkung
+        von $−5V < u < 5V$ nicht verletzt werden. Überprüfen Sie simulativ, ob Ihr Regler diese Forderung erfüllt. Falls nicht,
+        korrigieren Sie ihre Reglerparameter, sodass die Forderung erfüllt wird.
+        Wie lautet die Übertragungsfunktion $\overline{T}_\omega$ des bis hierhin entworfenen geschlossenen Regelkreises?
         \begin{quote}
             
             \begin{equation*}
@@ -293,46 +292,46 @@ xrightmargin=-1.5cm
                         \caption{Langsame Stoersprungantwort}
                         \label{fig:filename}
             \end{figure}
-    
+            
             Es fällt auf, dass die Störsprungantwort extrem langsam, und daher vermultich nicht zu gebrauchen ist. Selbst
             nach über \SI{150}{s} hat der Regler es, in der Simulation, nicht geschafft die Störung auszuregeln.\vspace{1em}
-             
+            
             Ob eine solch langsame Störsprungantwort zu gebrauchen ist hängt selbstverständlich von dem Problem ab für
-            das der Regler entworfen werden soll. Da aber unsere Führungssprungantwort eine Ausregelzeit von $0,6s$
-            aufweisen sollte und unsere Störsprungantwort eine Ausregelzeit größer als $150 s$ aufweist erscheint
-            dieser Regler so nicht praktikabel.\vspace{1em}
-             
-            Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_{m\omega}$ fällt es auf, dass
-            $\overline{G}_{m\omega}$ neben den zwei Polstellen von $\overline{T}_{m\omega}$ eine Polstell zusätzlich hat.\\
+            das der Regler entworfen werden soll. Da unsere Führungssprungantwort aber eine Ausregelzeit von $0,6s$
+            aufweisen sollte und unsere Störsprungantwort eine Ausregelzeit größer als $150 s$ aufweist erfüllt
+            dieser Regler nicht die Anforderungen.\vspace{1em}
+            
+            Beim Vergleichen der Polstellen von $\overline{T}_\omega$ und $\overline{G}_{m\omega}$ fällt auf, dass
+            $\overline{G}_{m\omega}$ neben den zwei Polstellen von $\overline{T}_{m\omega}$ eine zusätzliche Polstelle hat.\\
             
             $\overline{T}_\omega$ hat die Polstellen:\\
             \begin{equation*}
-            	\begin{split}
+                \begin{split}
                     pol \overline{T}_\omega (1) &= - 101.11273 + 193.21526i\\
-                    pol \overline{T}_\omega (2) &= - 101.11273 - 193.21526i\\            		
-            	\end{split}
+                    pol \overline{T}_\omega (2) &= - 101.11273 - 193.21526i\\
+                \end{split}
             \end{equation*}\\
             
              Während $\overline{G}_{m\omega}$ folgende Polstellen besitzt:\\
              
             \begin{equation*}
-            	\begin{split}
+                \begin{split}
                     pol \overline{G}_{m\omega} (1) &= - 101.11273 + 193.21526i\\
-                    pol \overline{G}_{m\omega} (2) &= - 101.11273 + 193.21526i\\                   
-                    pol \overline{G}_{m\omega} (3) &= - 0.0178492\\            		
-            	\end{split}
+                    pol \overline{G}_{m\omega} (2) &= - 101.11273 + 193.21526i\\
+                    pol \overline{G}_{m\omega} (3) &= - 0.0178492\\
+                \end{split}
             \end{equation*}
             
-            Diese eine zusätzliche Postelle von $\overline{G}_{m\omega}$ ist die langsame Polstelle der Strecke
+            Diese zusätzliche Postelle von $\overline{G}_{m\omega}$ ist die langsame Polstelle der Strecke
             $G_\omega^{'}$, die wir bei dieser Reglerentwicklung mit der Nullstelle des Reglers eliminieren wollten.\\
             In der Übertragungsfunktion des Geschlossenen Kreises kürzt sich die Nullstelle des Reglers mit der
-            Postelle der Strecke. Des halb taucht diese Polstelle nicht mehr als Polstelle von $\overline{T}_\omega$
+            Postelle der Strecke. Deshalb taucht diese Polstelle nicht mehr als Polstelle von $\overline{T}_\omega$
             auf. Bei der Störübertragungsfunktion $\overline{G}_{m\omega}$ hingegen kürzt sich diese Polstelle nicht
             raus und beeinflusst die Störsprungantwort sehr negativ.\\
             
             
             Im folgenden wird allgemein gezeigt, wie sich bei der komplimentären Sensitivitätsfunktion Pole der Strecke
-            gegen Nullstellen des Reglers kürzen jedoch bei dieser Form der Sörübertragungsfunktion erhalten bleiben.\\
+            mit Nullstellen des Reglers kürzen, bei Sörübertragungsfunktionen dieser Form jedoch erhalten bleiben.\\
             Der Regler $K$ und die Strecke $G$ seinen folgendermaßen dargestellt. Die Pole der Strecke in $N_G$ werden
             durch gleich viele Nullstellen im Regler in $Z_K$ kompensiert.
             \begin{equation*}
@@ -342,7 +341,7 @@ xrightmargin=-1.5cm
             	\end{split}
             \end{equation*}
             
-            Für die sensitivitätsfunktion heißt dass:
+            Für die Sensitivitätsfunktion heißt das:
             
             \begin{equation*}
             	\begin{split}
@@ -353,9 +352,9 @@ xrightmargin=-1.5cm
             	\end{split}
             \end{equation*}
                         
-            Die Pole und Nullstellen, die in $N_G$ und $Z_K$ vorhanden sind, lassen sich gegenseitig kürzen.\\
+            Die Pole und Nullstellen in $N_G$ und $Z_K$ kürzen sich raus.\\
             
-            Für die Störübertragungsfunktion hingengen ergibt:
+            Für die Störübertragungsfunktion hingengen ergibt sich:
             \begin{equation*}
             	\begin{split}
             		G_{m\omega} &= \frac{G}{1 + GK} = \frac{\frac{Z_G}{N_G}}{1 + \frac{Z_K}{N_K}\frac{Z_G}{N_G}}\\
@@ -366,7 +365,7 @@ xrightmargin=-1.5cm
             In diesem Fall fehlt die Nullstellen des Reglers im Zähler der Störübertragungsfunktion. Daher bleiben die
             Polstellen in $G_{m\omega}$ erhalten.
             
-                        
+            
 		\end{quote}
 		
 		\subsubsection{Korrektur der Führungs- und Störübertragungsfunktion}
@@ -378,10 +377,10 @@ xrightmargin=-1.5cm
 	    Führungsübertragungsfunktion $T_\omega$ und die neue Störübertragungsfunktion $G_{m\omega}$ und deren Pole?
 		\begin{quote}
 		\vspace{1em}
-			Nun verschieben wir die Nullstelle weiter in den Negativen bereich, wodurch das neue $T_\omega$ und das
-			neue $G_{m\omega}$ gleich viele Pole haben. Das liegt daran, dass bei $T_\omega$ kein Pol mehr eliminiert wird.\\
-			Mit der Nullstelle $s_{0\omega}$ auf der $-10$ und mit einer Verstärkung
-			von $\frac{1}{45}$ folgt folgende Störsprungantwort.
+        Nun verschieben wir die Nullstelle weiter in den Negativen bereich, wodurch das neue $T_\omega$ und das neue $G_{m\omega}$ gleich
+        viele Pole haben. Das liegt daran, dass bei $T_\omega$ kein Pol mehr eliminiert wird.\\
+        Mit der Nullstelle $s_{0\omega}$ bei $-10$ und mit einer Verstärkung von $\frac{1}{45}$ ergibt sich folgende
+        Störsprungantwort.
 			
 			\begin{figure}[H]
             \centering
@@ -390,8 +389,8 @@ xrightmargin=-1.5cm
                     \label{fig:Stoersprungantwortschnell}
             \end{figure}
             
-            Diese Störsprungantwort erhat eien Ausregelzeit von $0,5s$ und reagiert damit um Größenordnungen schneller
-            als unsere erste Reglerentwicklung.\vspace{1em}
+            Diese Störsprungantwort hat eien Ausregelzeit von $0,5s$ und reagiert damit um Größenordnungen schneller
+            als bei unserer ersten Reglerentwicklung.\vspace{1em}
             
             Auch die Sprungantwort erfüllt mit diesen Werten alle Bedingungen:
             \begin{figure}[H]
@@ -411,10 +410,11 @@ xrightmargin=-1.5cm
             	\end{split}
             \end{equation*}\\
             
-            An dem selben Nenner von $T_\omega$ und $G_{m\omega}$ lässt sich schon erkennen, dass die beiden
-            Übertragungsfunktionen die Selben Polstellen besitzen.\\
+            Am selben Nenner von $T_\omega$ und $G_{m\omega}$ lässt sich erkennen, dass die beiden Übertragungsfunktionen die
+            Selben Polstellen besitzen.\\
             
             $T_\omega$ hat die Polstellen:\\
+            
             \begin{equation*}
                 \begin{split}
                     pol T_\omega (1) &= - 123.67194\\
@@ -439,7 +439,7 @@ xrightmargin=-1.5cm
 	
 	\subsection{Anti-Windup-Schaltung in Scicos erstellen}
 	Aufgabe:\\
-    Erweitern Sie Ihre Reglerstruktur in Scicos um eine Anti-Windup-Schaltung nach Abbildung 11. Beziehen Sie sowohl
+    Erweitern Sie Ihre Reglerstruktur in Scicos um eine Anti-Windup-Schaltung. Beziehen Sie sowohl
     den äußeren als auch den inneren Regler in die Schaltung ein. Realisieren Sie dafür den inneren und äußeren
     PI-Regler in einer Parallelform mit P- und I-Anteil.
 	\begin{quote}
@@ -474,9 +474,9 @@ xrightmargin=-1.5cm
     \begin{quote}
         
         \subsubsection{Führungssprungantwort}
-        Nehmen Sie die Führungssprungantwort des Drehzahlregelkreises auf. Schalten Sie
-        dafür den Sollwert der Winkelgeschwindigkeit von $0 \mathrm{\frac{rad}{s}}$ auf $150 \mathrm{\frac{rad}{s}}$
-        Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße $r_i$ des Regelkreises auf.
+        Nehmen Sie die Führungssprungantwort des Drehzahlregelkreises auf. Schalten Sie dafür den Sollwert der
+        Winkelgeschwindigkeit von $0 \mathrm{\frac{rad}{s}}$ auf $150 \mathrm{\frac{rad}{s}}$ Nehmen Sie zusätzlich zu der
+        Regelgröße auch die Stellgröße $r_i$ des Regelkreises auf.
         Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der Simulation des
         Führungsverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
         
@@ -508,23 +508,24 @@ xrightmargin=-1.5cm
         \end{tabular}
         \end{center}
         
+        \vspace{2em}
+        
+        Die Sprungantworten erfüllen alle gestellten Bedingungen. Die Geschwindigkeit ändert sich etwas langsamer als
+        simuliert, erreicht jedoch schon nach \si{0,35}{s} den angestrebten Wert von $150 \mathrm{\frac{rad}{s}}$. Die geringe
+        Abweichung ist mit höherer Trägheit und mehr Reibmoment gegenüber der Simulation zu erklären.\\
+        Auch die Sprungantwort des Stroms stellt sich mit nur geringem Überschwingen sehr schnell wieder ein.
         
         
         
-        
-        
-        
-        
-                    
         \end{quote}
         
         
         \subsubsection{Störsprungantwort}
-        Nehmen Sie die Störsprungantwort des Systems auf. Betreiben Sie den Motor bei
-        einer Winkelgeschwindigkeit von $150 \mathrm{\frac{rad}{s}}$ und lösen Sie die Rückhaltevorrichtung
-        der Bremse um ein sprunghaftes Lastmoment zu erhalten. Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße
-        $r_i$ des Regelkreises auf. Beschreiben und diskutieren Sie das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der
-        Simulation des Störverhaltens aus der Vorbereitungsaufgabe \ref{2f}!
+        Nehmen Sie die Störsprungantwort des Systems auf. Betreiben Sie den Motor bei einer Winkelgeschwindigkeit von $150
+        \mathrm{\frac{rad}{s}}$ und lösen Sie die Rückhaltevorrichtung der Bremse um ein sprunghaftes Lastmoment zu erhalten.
+        Nehmen Sie zusätzlich zu der Regelgröße auch die Stellgröße $r_i$ des Regelkreises auf. Beschreiben und diskutieren Sie
+        das Regelkreisverhalten! Vergleichen Sie das Ergebnis mit der Simulation des Störverhaltens aus der Vorbereitungsaufgabe
+        \ref{2f}!
         
         \begin{quote}
             
@@ -553,14 +554,15 @@ xrightmargin=-1.5cm
             
         \end{tabular}
         \end{center}
+        \vspace{2em}
+        
+        Wie auch schon bei letzten Versuch beobachtet reagiert die Störsprungantwort des Reglers sogar etwas schneller als wir es
+        simuliert haben. Dies hängt wiederum mit ungenauigkeiten der Realen bauteile zusammen, welche sich in diesem Fall zu
+        unseren Gunsten auswirken.
+        
+        
         \end{quote}
-        
-        
-        
-        
-        
-        
-        
+    
     \end{quote}
     
     
@@ -571,14 +573,14 @@ xrightmargin=-1.5cm
     
     \begin{quote}
         
-        Dieser Versuchsteil hat leider nicht den gewünschten und erwarteten Erfolg gebracht. Erwartet hätten wir einen
+        Dieser Versuchsteil hat leider nicht den gewünschten bzw. erwarteten Erfolg gebracht. Erwartet hätten wir einen
         ähnlich schnelle Führungssprungantwort wie mit dem guten Regler jedoch eine sehr viel langsamere
-        Störsprungantwort. Der Versuch selbst hat jedoch schon eine sehr langsame Führungssprungantwort ergeben mit
-        einer Ausregelzeit weit größer als $20 s$. Laut unserer Simulation hätte sich jedoch eine Ausregelzeit von unter
-        $0.1 s$ einstellen sollen. Den Fehler für diese Abweichung konnten wir nicht identifizieren.\vspace{1em}
+        Störsprungantwort. Der Versuch hat jedoch schon eine sehr langsame Führungssprungantwort, mit
+        einer Ausregelzeit weit größer als $20 s$, ergeben. Laut unserer Simulation hätte sich hingegen eine Ausregelzeit von
+        unter $0.1 s$ einstellen sollen. Den Fehler für diese Abweichung konnten wir nicht identifizieren.\vspace{1em}
         
-        Merkwürdig war außerdem, dass ein falsches Vorzeichen in der Rückführung des PT1-Gliedes in unserer Scicos Datei
-        keine Auswirkung auf die Messergebnisse hatte.\vspace{1em}
+        Unerklärlich war außerdem, dass die Änderung des Vorzeichens in der Rückführung des PT1-Gliedes im Scicos Modell
+        keine Auswirkung auf das Regelverhalten hatte.\vspace{1em}
         
         Da wir leider keine vernünftigen Messergebnisse von diesem Versuch haben können wir weder etwas plotten noch
         analysieren.
@@ -588,81 +590,83 @@ xrightmargin=-1.5cm
     
     
     \subsection{Test der Anti-Windup-Schaltung}
-    Testen Sie ihre Anti-Windup-Schaltung mit den Parametern aus Aufgabe \ref{2f}. Betreiben
-    Sie den Motor bei einer Winkelgeschwindigkeit von$150 \mathrm{\frac{rad}{s}}$
-    und halten Sie die Scheibe
-    sehr kurz fest um sie danach sofort wieder freizugeben. Wiederholen Sie den Versuch mit
-    deaktivierter Anti-Windup-Schaltung! Nehmen Sie neben der Winkelgeschwindigkeit
-    und dem Ankerstrom die Stellgrößen vor und nach der Beschränkung auf. Beschreiben
-    und vergleichen Sie das Regelkreisverhalten mit und ohne Anti-Windup-Schaltung!
+    Testen Sie ihre Anti-Windup-Schaltung mit den Parametern aus Aufgabe \ref{2f}. Betreiben Sie den Motor bei einer
+    Winkelgeschwindigkeit von $150 \mathrm{\frac{rad}{s}}$ und halten Sie die Scheibe sehr kurz fest um sie danach sofort wieder
+    freizugeben. Wiederholen Sie den Versuch mit deaktivierter Anti-Windup-Schaltung! Nehmen Sie neben der Winkelgeschwindigkeit
+    und dem Ankerstrom die Stellgrößen vor und nach der Beschränkung auf. Beschreiben und vergleichen Sie das Regelkreisverhalten
+    mit und ohne Anti-Windup-Schaltung!
     
     \begin{quote}
         
-        Bei diesem Versuch haben wir den laufenden Motor nicht nur durch eine Last in seiner Umdrehung gestört sondern
-        ihn durch festhalten der Scheibe kurz komplett angehalten. Dadurch haben wir den Regler gezwungen so stark auf
-        diese Störung zu reagieren, dass er mit seiner inneren Stellgröße $u$ in die Begrenzung geht. Diesen Versuch
-        haben wir sowohl mit eingeschalteter Wind-up Schaltung durchgeführt als auch mit ausgeschalteter Wind-up
-        Schaltung.\\
-        
-        Die Messergebniss von diesen zwei Versuchen sehen Folgendermaßen aus.
+        Bei diesem Versuch haben wir den laufenden Motor nicht nur durch eine Last in seiner Umdrehung gestört sondern ihn durch
+        festhalten der Schwungscheibe kurz angehalten. Dadurch haben wir den Regler gezwungen so stark auf diese Störung zu
+        reagieren, dass er mit seiner inneren Stellgröße $u$ in die Begrenzung von \si{\pm5}{V} geht. Diesen Versuch haben wir
+        sowohl mit eingeschalteter als auch mit ausgeschalteter Wind-up Schaltung durchgeführt.\\
+        Die Messergebniss der zwei Versuche sehen Folgendermaßen aus:
 
         \begin{figure}[H]
         \centering
-            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
-            clip]{./Bilder/windup_sprungantwort_Geschwindigkeit}    
-            \caption{Sprungantwort Geschwindigkeit}
+            \label{fig:w}
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm, clip]
+            {./Bilder/windup_sprungantwort_Geschwindigkeit}
+            \caption{Störsprungantwort der Geschwindigkeit}
         \end{figure}
         
         \begin{figure}[H]
         \centering
-            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
-            clip]{./Bilder/windup_sprungantwort_sollstrom}    
-            \caption{Sprungantwort Sollstrom}
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm, clip]
+            {./Bilder/windup_sprungantwort_sollstrom}
+            \caption{Störsprungantwort des Sollstroms}
         \end{figure}
         
         \begin{figure}[H]
         \centering
-            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
-            clip]{./Bilder/windup_sprungantwort_Spannung}    
-            \caption{Sprungantwort Spannung}
-        \end{figure}        
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm, clip]
+            {./Bilder/windup_sprungantwort_Spannung}
+            \caption{Störsprungantwort der Spannung}
+        \end{figure}
         
 
         \begin{figure}[H]
         \centering
-            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm,
-            clip]{./Bilder/windup_sprungantwort_Strom}    
-            \caption{Sprungantwort Strom}
-        \end{figure}    
+            \includegraphics[scale=0.8, trim = 0.5cm 0.5cm 2cm 0.5cm, clip]
+            {./Bilder/windup_sprungantwort_Strom}
+            \caption{Störsprungantwort des Stroms}
+        \end{figure}
         
-        In der Grafik die die Drehgeschwindigkeit darstellt sieht man klar, wann die Schwungscheibe von ihrer
-        Drehgeschwindigkeit von $150 \frac{rad}{s}$ auf $0\frac{rad}{s}$ abgebremst wird. Als reaktion darauf versucht
+        In der Grafik \ref{fig:w} sieht man klar, wann die Schwungscheibe 
+        von $150 \frac{rad}{s}$ auf $0\frac{rad}{s}$ abgebremst wird. Als reaktion darauf versucht
         der Regler den Motor anzuregen. Dazu steigt der Sollstrom an, weshalb wiederum die Spannung sprungartig
-        ansteigt. Diese wiederum gerät dabei in die Begrenzung.\\
+        ansteigt. Hierbei wiederum gerät die Spannung in die Begrenzung.\\
+        
         \subsubsection{aktive anti-Windup Schaltung}
 		\begin{quote}
-            Im Falle der aktivierten anti-Wind-up Schaltung bremst diese sofort die beiden Intregratoren der beiden
-            Regelgrößen. Dieses verhindert, dass die beiden Regler mit ihren Reglgrößen über ihr Ziel hinausschießen.\\
+            Im Falle der aktivierten anti-Wind-up Schaltung bremst diese sofort die Intregratoren der beiden
+            Stellgrößen, sodass nicht über die physikalische Beschränkung hinaus integriert wird. Dadurch stimmen die
+            physikalischen Größen und die Stellgrößen weiterhin überein. Dies verhindert, dass die Regler mit ihren Reglgrößen
+            über ihr Ziel hinausschießen.\\
             Dieser Effekt lässt sich sehr gut an den Grünen Linien in der Sprungantwort der Spannung sowie der
             Sprunganwort des Sollstroms erkennen.\\
             Auch an der Drehgeschwindigkeit lässt sich dieses abbremsen erkennen, da die Grüne Linie langsamer aus der
-            Störung rauskommt als die Blaue. Dafür schafft sie es jedoch sobald die gewünschte Drehzahl erreicht ist die
+            Störung rauskommt als die Blaue. Dafür schafft sie es jedoch, sobald die gewünschte Drehzahl erreicht ist, die
             Beschleunigung komplett abzubremsen und hat somit die Störung ausgeregelt.\vspace{1em}
 			
 		\end{quote}
 		
 		\subsubsection{deaktive anti-Winfup Schaltung}
 		\begin{quote}
-            Im Gegensatz dazu versucht der Regler ohne anti-Windup die Störung auszugleichen als ob es keine
-            Begrenzung gebe. Das wiederum hat zur folge, dass der innere Regler nicht den erwarteten Ankerstrom erzeugt,
-            weshalb der innere Regler selber den Integrator hochzählt um weiter gegenzusteuern.\\
-            Sobald der Regler sich der angestrebten Winkelgeschwindigkeit nähert müsste er anfangen gegenzusteuern
-            um nicht überzuschwingen. Da der Integrator des Inneren Reglers inzwischen einen sehr hohen wert angenommen hat
-            schafft er genau das nicht und schwingt über. Der Regler benötigt ein lange Zeit um die ursprüngliche Störung
-            auszuregeln.\\
-            Das Überschwingen lässt sich in allen vier Messerten erkennen.			
+            Im Gegensatz dazu versucht der Regler ohne anti-Windup die Störung auszugleichen als ob es keine Begrenzung gäbe. Das
+            wiederum hat zur Folge, dass der Regler annimmt der Ankerstrom würde nicht ausreichen um gegenzusteuern und
+            deshalb die Stellgröße weiter aufintegriert.\\
+            Sobald der Regler sich der angestrebten Winkelgeschwindigkeit nähert, müsste er anfangen gegenzusteuern um 
+            Überschwingen zu vermeiden. Da der Integrator des inneren Reglers inzwischen aber einen sehr hohen Wert angenommen
+            hat, hat das gegensteuern zwar einen Einfluss auf den Integrator bzw. die theoretische Stellgröße, nicht jedoch auf
+            die physikalische.\\
+            Durch das fehlende Gegensteuern schwingt die Regelgröße über. Der Regler benötigt somit, falls er es überhaup schafft,
+            sehr lange um die ursprüngliche Störung auszuregeln.\\
+            Das Überschwingen lässt sich in allen vier Messerten erkennen.
 		\end{quote}
-                        
+        
     \end{quote}
 
 
