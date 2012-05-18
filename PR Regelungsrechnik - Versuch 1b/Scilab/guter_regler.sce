@@ -138,8 +138,8 @@ h1 = (h1/max(h1))*(min(w6)-150)+150;
 
 scf(12);
 clf(12);
-globalPlot(T6,W6)
-globalPlot(T6,h1,10);
+globalPlot(T6,W6,3)
+globalPlot(T6,h1,2);            
 xgrid();
 xtitle("Störsprungantwort","Zeit [s]","Winkelgeschwindigkeit [rad/s]");
 legend("gemessen","simuliert",4);
